@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">GoJob</string>
+<<<<<<< HEAD
     <string name="register">Dont have account yet? Sign up </string>
+=======
+>>>>>>> d765f9dfb742d09c50892ca3cd5cc8446a019180
 </resources>
