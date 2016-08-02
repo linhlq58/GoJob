@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-<<<<<<< HEAD
     package="com.freshvegetable.gojob">
-=======
-    package="com.example.linhlee.gojob">
->>>>>>> d765f9dfb742d09c50892ca3cd5cc8446a019180
 
     <application
         android:allowBackup="true"
@@ -12,26 +8,17 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-<<<<<<< HEAD
         <activity android:name=".activities.SignInActivity">
-=======
-        <activity android:name=".MainActivity">
->>>>>>> d765f9dfb742d09c50892ca3cd5cc8446a019180
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<<<<<<< HEAD
-        <activity android:name=".activities.MainActivity"/>
+        <activity android:name=".activities.MainActivity" />
     </application>
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>
-=======
-    </application>
 
-</manifest>
->>>>>>> d765f9dfb742d09c50892ca3cd5cc8446a019180

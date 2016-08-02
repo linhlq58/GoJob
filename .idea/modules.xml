@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ProjectModuleManager">
-<<<<<<< HEAD
     <modules>
       <module fileurl="file://$PROJECT_DIR$/GoJob.iml" filepath="$PROJECT_DIR$/GoJob.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
-=======
-    <modules />
->>>>>>> d765f9dfb742d09c50892ca3cd5cc8446a019180
   </component>
 </project>
