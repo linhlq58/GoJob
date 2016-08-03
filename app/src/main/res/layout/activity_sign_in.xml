@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
-    android:padding="@dimen/activity_horizontal_margin">
+    android:paddingLeft="48dp"
+    android:paddingRight="48dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,47 +14,128 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <android.support.design.widget.TextInputLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <ImageView
+                android:id="@+id/imgUser"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerInParent="true"
+                android:layout_margin="8dp"
+                android:src="@mipmap/user" />
+
+
             <EditText
+                style="@style/Base.V12.Widget.AppCompat.EditText"
                 android:id="@+id/etSignInUsername"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
+                android:layout_toRightOf="@+id/imgUser"
                 android:hint="Username"
-                android:inputType="text" />
-        </android.support.design.widget.TextInputLayout>
+                android:inputType="text"
+                android:textColorHint="#26000000" />
+        </RelativeLayout>
 
-        <android.support.design.widget.TextInputLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp">
+
+            <ImageView
+                android:id="@+id/imgPassword"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerInParent="true"
+                android:layout_margin="8dp"
+                android:src="@mipmap/password" />
+
 
             <EditText
                 android:id="@+id/etSignInPassword"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:layout_marginTop="32dp"
+                android:layout_toRightOf="@+id/imgPassword"
                 android:hint="Password"
-                android:inputType="textPassword" />
-        </android.support.design.widget.TextInputLayout>
+                android:inputType="textPassword"
+                android:textColorHint="#26000000" />
+
+        </RelativeLayout>
 
         <Button
+            style="@style/Base.Widget.AppCompat.Button.Borderless"
             android:id="@+id/btnSignIn"
-            style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
             android:layout_marginBottom="16dp"
             android:layout_marginTop="16dp"
-            android:text="Sign In" />
+            android:background="@drawable/bg_btn_sign_in"
+            android:text="Sign In"
+            android:textAllCaps="false"
+            android:textColor="@color/textColorSecondary" />
+
+        <Button
+            style="@style/Base.Widget.AppCompat.Button.Borderless"
+            android:shadowColor="@android:color/transparent"
+            android:id="@+id/btnSignUp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/bg_btn_sign_up"
+            android:text="Sign Up"
+            android:textAllCaps="false"
+            android:textColor="@color/colorPrimary"
+
+            />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
+            android:layout_marginBottom="16dp"
             android:gravity="center"
-            android:text="@string/register"
-            android:textColor="@color/colorAccent" />
+            android:text="Forget password?"
+            android:textColor="@color/colorPrimary" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Sign in with"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginBottom="16dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="16dp"
+                android:background="@android:color/transparent"
+                android:scaleType="fitCenter"
+                android:src="@mipmap/facebook" />
+
+            <ImageButton
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginBottom="16dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="16dp"
+                android:background="@android:color/transparent"
+                android:scaleType="fitCenter"
+                android:src="@mipmap/google_plus" />
+        </LinearLayout>
     </LinearLayout>
 
     <TextView
@@ -62,5 +144,6 @@
         android:layout_alignParentBottom="true"
         android:gravity="center"
         android:text="Go Job 2016 by FRESH VEGETABLE team"
-        android:textColor="@android:color/black" />
+        android:textColor="@color/colorPrimary"
+        android:layout_marginBottom="8dp"/>
 </RelativeLayout>
