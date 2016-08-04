@@ -30,7 +30,7 @@
 
 
         <EditText
-            android:id="@+id/etSignUpLastName"
+            android:id="@+id/etSignUpEmail"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginTop="16dp"
@@ -75,6 +75,7 @@
             android:textColor="@color/textColorSecondary" />
 
         <TextView
+            android:id="@+id/tvSignIn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"

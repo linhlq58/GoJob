@@ -29,7 +29,6 @@
 
 
             <EditText
-                style="@style/Base.V12.Widget.AppCompat.EditText"
                 android:id="@+id/etSignInUsername"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
@@ -92,6 +91,7 @@
             />
 
         <TextView
+            android:id="@+id/tvForgetPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
@@ -115,6 +115,7 @@
             android:orientation="horizontal">
 
             <ImageButton
+                android:id="@+id/btnFacebook"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:layout_marginBottom="16dp"
@@ -126,6 +127,7 @@
                 android:src="@mipmap/facebook" />
 
             <ImageButton
+                android:id="@+id/btnGooglePlus"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:layout_marginBottom="16dp"
