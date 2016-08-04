@@ -7,6 +7,7 @@ import android.view.View;
 
 import com.freshvegetable.gojob.R;
 
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -19,6 +20,7 @@ public class SignUpActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+        ButterKnife.bind(this);
     }
 
     @OnClick({R.id.btnSignUp, R.id.tvSignIn})

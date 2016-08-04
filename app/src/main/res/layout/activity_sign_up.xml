@@ -9,9 +9,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingTop="32dp"
         android:paddingLeft="48dp"
-        android:paddingRight="48dp">
+        android:paddingRight="48dp"
+        android:paddingTop="32dp">
 
         <TextView
             android:layout_width="match_parent"
@@ -67,22 +67,36 @@
             android:id="@+id/btnSignUp"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
+            android:layout_marginTop="16dp"
             android:background="@drawable/bg_btn_sign_in"
             android:text="Sign Up"
             android:textAllCaps="false"
             android:textColor="@color/textColorSecondary" />
 
-        <TextView
-            android:id="@+id/tvSignIn"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
             android:layout_marginBottom="16dp"
-            android:gravity="center"
-            android:text="Already have account?"
-            android:textColor="@color/colorPrimary" />
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/tvSignIn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:gravity="center"
+                android:text="Already have account?"
+                android:textColor="@color/colorPrimary" />
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginLeft="4dp"
+                android:scaleType="fitCenter"
+                android:src="@mipmap/help" />
+        </LinearLayout>
     </LinearLayout>
 
     <TextView

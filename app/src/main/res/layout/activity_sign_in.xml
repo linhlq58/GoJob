@@ -65,8 +65,8 @@
         </RelativeLayout>
 
         <Button
-            style="@style/Base.Widget.AppCompat.Button.Borderless"
             android:id="@+id/btnSignIn"
+            style="@style/Base.Widget.AppCompat.Button.Borderless"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginBottom="16dp"
@@ -77,28 +77,42 @@
             android:textColor="@color/textColorSecondary" />
 
         <Button
-            style="@style/Base.Widget.AppCompat.Button.Borderless"
-            android:shadowColor="@android:color/transparent"
             android:id="@+id/btnSignUp"
+            style="@style/Base.Widget.AppCompat.Button.Borderless"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginBottom="8dp"
             android:background="@drawable/bg_btn_sign_up"
+            android:shadowColor="@android:color/transparent"
             android:text="Sign Up"
             android:textAllCaps="false"
             android:textColor="@color/colorPrimary"
 
             />
 
-        <TextView
-            android:id="@+id/tvForgetPassword"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
+            android:orientation="horizontal"
             android:layout_marginBottom="16dp"
-            android:gravity="center"
-            android:text="Forget password?"
-            android:textColor="@color/colorPrimary" />
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/tvForgetPassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:gravity="center"
+                android:text="Forget password?"
+                android:textColor="@color/colorPrimary" />
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@mipmap/help"
+                android:layout_marginLeft="4dp"
+                android:scaleType="fitCenter"
+                />
+        </LinearLayout>
 
         <TextView
             android:layout_width="match_parent"
@@ -144,8 +158,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:layout_marginBottom="8dp"
         android:gravity="center"
         android:text="Go Job 2016 by FRESH VEGETABLE team"
-        android:textColor="@color/colorPrimary"
-        android:layout_marginBottom="8dp"/>
+        android:textColor="@color/colorPrimary" />
 </RelativeLayout>
