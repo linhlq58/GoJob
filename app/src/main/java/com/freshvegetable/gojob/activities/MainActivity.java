@@ -3,9 +3,11 @@ package com.freshvegetable.gojob.activities;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
@@ -18,6 +20,8 @@ import butterknife.OnClick;
 public class MainActivity extends AppCompatActivity {
     @BindView(R.id.toolbar)
     Toolbar toolbar;
+    @BindView(R.id.cardRecycleView)
+    RecyclerView cardRecycleView;
     @BindView(R.id.fab)
     FloatingActionButton fab;
     @BindView(R.id.nav_view)
@@ -30,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-
         setSupportActionBar(toolbar);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(MainActivity.this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.setDrawerListener(toggle);
@@ -60,5 +63,6 @@ public class MainActivity extends AppCompatActivity {
     @OnClick(R.id.fab)
     public void onClick() {
 //        TODO to add new post activity
+        Snackbar.make(drawerLayout, "New post", Snackbar.LENGTH_SHORT).show();
     }
 }

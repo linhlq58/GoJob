@@ -11,7 +11,7 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 
 import com.freshvegetable.gojob.R;
-import com.freshvegetable.gojob.utils.ConstantData;
+import com.freshvegetable.gojob.utils.Url;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -60,7 +60,7 @@ public class SignInActivity extends AppCompatActivity {
                         Snackbar.make(container, "Enter your password", Snackbar.LENGTH_SHORT).setAction("OKAY", null).show();
                     } else {
 
-                        String url = ConstantData.BASE_URL + ConstantData.SIGN_IN_API_URL;
+                        String url = Url.BASE_URL + Url.SIGN_IN_API_URL;
                         RequestParams params = new RequestParams();
                         params.put("username", etSignInUsername.getText().toString());
                         params.put("password", etSignInPassword.getText().toString());

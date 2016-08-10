@@ -16,7 +16,7 @@
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
 
-    g<include layout="@layout/card_list" />
+    <include layout="@layout/card_list" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
@@ -24,6 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
+        app:backgroundTint="@color/colorPrimary"
         android:src="@android:drawable/ic_menu_edit" />
 
 </android.support.design.widget.CoordinatorLayout>
