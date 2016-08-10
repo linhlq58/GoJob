@@ -53,35 +53,39 @@ public class SignInActivity extends AppCompatActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btnSignIn:
-                if (etSignInUsername.getText().toString().equals("")) {
-                    Snackbar.make(container, "Please enter your Username", Snackbar.LENGTH_SHORT).setAction("OKAY", null).show();
-                } else if (etSignInPassword.getText().toString().equals("")) {
-                    Snackbar.make(container, "Enter your password", Snackbar.LENGTH_SHORT).setAction("OKAY", null).show();
-                } else {
+                if (Boolean.FALSE) {
+                    if (etSignInUsername.getText().toString().equals("")) {
+                        Snackbar.make(container, "Please enter your Username", Snackbar.LENGTH_SHORT).setAction("OKAY", null).show();
+                    } else if (etSignInPassword.getText().toString().equals("")) {
+                        Snackbar.make(container, "Enter your password", Snackbar.LENGTH_SHORT).setAction("OKAY", null).show();
+                    } else {
 
-                    String url = ConstantData.BASE_URL + ConstantData.SIGN_IN_API_URL;
-                    RequestParams params = new RequestParams();
-                    params.put("username", etSignInUsername.getText().toString());
-                    params.put("password", etSignInPassword.getText().toString());
-                    client.post(url, params, new AsyncHttpResponseHandler() {
-                        @Override
-                        public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                            String responce = new String(responseBody, StandardCharsets.UTF_8);
-                            try {
-                                JSONObject jObject = new JSONObject(responce);
-                                Log.d("result",jObject.toString());
-                            } catch (JSONException e) {
-                                e.printStackTrace();
+                        String url = ConstantData.BASE_URL + ConstantData.SIGN_IN_API_URL;
+                        RequestParams params = new RequestParams();
+                        params.put("username", etSignInUsername.getText().toString());
+                        params.put("password", etSignInPassword.getText().toString());
+                        client.post(url, params, new AsyncHttpResponseHandler() {
+                            @Override
+                            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                                String responce = new String(responseBody, StandardCharsets.UTF_8);
+                                try {
+                                    JSONObject jObject = new JSONObject(responce);
+                                    Log.d("result", jObject.toString());
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                                Snackbar.make(container, "Sign in Success", Snackbar.LENGTH_SHORT).show();
                             }
-                            Snackbar.make(container, "Sign in Success", Snackbar.LENGTH_SHORT).show();
-                        }
 
-                        @Override
-                        public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                            Snackbar.make(container, "Sign in failed", Snackbar.LENGTH_SHORT).setAction("RETRY", null).show();
-                        }
-                    });
-
+                            @Override
+                            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                                Snackbar.make(container, "Sign in failed", Snackbar.LENGTH_SHORT).setAction("RETRY", null).show();
+                            }
+                        });
+                    }
+                } else {
+                    Intent intent = new Intent(SignInActivity.this, MainActivity.class);
+                    startActivity(intent);
                 }
                 break;
             case R.id.btnSignUp:
