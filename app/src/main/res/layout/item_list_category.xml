@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="136dp"
     android:background="@color/colorAccent"
@@ -11,30 +12,31 @@
         android:id="@+id/imgCategoryIcon"
         android:layout_width="64dp"
         android:layout_height="64dp"
-        android:layout_marginRight="8dp"
         android:layout_gravity="left|center"
-        android:scaleType="fitCenter"
-        />
+        android:layout_marginRight="8dp"
+        android:scaleType="fitCenter" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center">
-    <TextView
-        android:id="@+id/categoryTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="8dp"
-        android:text="Web"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@color/textColorPrimary" />
+        android:gravity="center"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/categoryPostCount"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="8dp"
-        android:text="1320 posts"
-        android:textColor="@color/textColorSecondary" />
+        <TextView
+            android:id="@+id/categoryTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="Web"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/textColorPrimary" />
+
+        <TextView
+            android:id="@+id/categoryPostCount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="1320 posts"
+            android:textColor="@color/textColorSecondary" />
     </LinearLayout>
 </LinearLayout>

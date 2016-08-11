@@ -7,6 +7,9 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.ListView;
@@ -24,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     //    @BindView(R.id.cardRecycleView)
 //    RecyclerView cardRecycleView;
     @BindView(R.id.categoryListView)
-    ListView categoryListView;
+    RecyclerView categoryListView;
     @BindView(R.id.fab)
     FloatingActionButton fab;
     @BindView(R.id.nav_view)
@@ -45,7 +48,11 @@ public class MainActivity extends AppCompatActivity {
         toggle.syncState();
 
         mCategoryAdapter = new CategoryAdapter(this);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+        categoryListView.setLayoutManager(mLayoutManager);
         categoryListView.setAdapter(mCategoryAdapter);
+        categoryListView.setItemAnimator(new DefaultItemAnimator());
+
 
 /*        categoryListView.setOnScrollListener(new HidingScrollListenner() {
             @Override
