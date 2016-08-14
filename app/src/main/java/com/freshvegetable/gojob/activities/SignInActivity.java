@@ -7,8 +7,12 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.freshvegetable.gojob.R;
 import com.freshvegetable.gojob.utils.Url;
@@ -31,11 +35,24 @@ import cz.msebera.android.httpclient.Header;
  */
 public class SignInActivity extends AppCompatActivity {
 
-
+    @BindView(R.id.imgUser)
+    ImageView imgUser;
     @BindView(R.id.etSignInUsername)
     EditText etSignInUsername;
+    @BindView(R.id.imgPassword)
+    ImageView imgPassword;
     @BindView(R.id.etSignInPassword)
     EditText etSignInPassword;
+    @BindView(R.id.btnSignIn)
+    Button btnSignIn;
+    @BindView(R.id.btnSignUp)
+    Button btnSignUp;
+    @BindView(R.id.tvForgetPassword)
+    TextView tvForgetPassword;
+    @BindView(R.id.btnFacebook)
+    ImageButton btnFacebook;
+    @BindView(R.id.btnGooglePlus)
+    ImageButton btnGooglePlus;
     @BindView(R.id.container)
     RelativeLayout container;
     private AsyncHttpClient client = null;

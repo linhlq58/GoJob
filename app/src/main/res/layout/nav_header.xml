@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="match_parent"
+    android:layout_height="160dp"
+    android:background="@mipmap/iv_bg"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <com.freshvegetable.gojob.widgets.CircleImage
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:scaleType="fitCenter"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:id="@+id/iv_profile"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ngọc Lê"
+        android:layout_below="@+id/iv_profile"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        android:id="@+id/txt_name_profile"
+        android:textSize="17sp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="lethanhngoc672@gmail.com"
+        android:layout_below="@+id/txt_name_profile"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:textColor="@android:color/white"
+        android:id="@+id/txt_gmail_profile"
+        android:textSize="17sp"
+        />
+
+</RelativeLayout>

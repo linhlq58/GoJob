@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/navNotification"
+            android:icon="@mipmap/notification"
+            android:title="Notification" />
+        <item
+            android:id="@+id/navMassage"
+            android:title="Massage" />
+        <item
+            android:id="@+id/navSetting"
+            android:title="Setting" />
+        <item
+            android:id="@+id/navHome"
+        android:title="Home" />
+        <item
+            android:id="@+id/navSecurity"
+            android:title="Security" />
+        <item
+            android:id="@+id/navEvents"
+            android:title="Events" />
+        <item
+            android:id="@+id/navResponse"
+            android:title="Response" />
+        <item
+            android:id="@+id/navLogout"
+            android:title="Logout" />
+
+    </group>
+</menu>
