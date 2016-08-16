@@ -6,12 +6,16 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.freshvegetable.gojob.R;
 import com.freshvegetable.gojob.adapters.CategoryAdapter;
+import com.freshvegetable.gojob.models.Category;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -25,6 +29,7 @@ public class CategoryFragment extends Fragment {
     RecyclerView categoryListView;
 
     private CategoryAdapter mCategoryAdapter;
+    private ArrayList<Category> categories;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -37,14 +42,28 @@ public class CategoryFragment extends Fragment {
         super.onCreateView(inflater, container, savedInstanceState);
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_category, container, false);
         ButterKnife.bind(this, rootView);
-
-        mCategoryAdapter = new CategoryAdapter(this.getContext());
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
-        categoryListView.setLayoutManager(mLayoutManager);
-        categoryListView.setAdapter(mCategoryAdapter);
-        categoryListView.setItemAnimator(new DefaultItemAnimator());
-
         return rootView;
     }
 
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        categoryListView.setHasFixedSize(true);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(view.getContext());
+        categoryListView.setLayoutManager(mLayoutManager);
+        initList();
+        mCategoryAdapter = new CategoryAdapter(categories);
+        categoryListView.setAdapter(mCategoryAdapter);
+        categoryListView.setItemAnimator(new DefaultItemAnimator());
+        Log.d("count", categoryListView.getChildCount() + "");
+        super.onViewCreated(view, savedInstanceState);
+    }
+
+    private void initList() {
+        categories = new ArrayList<>();
+        categories.add(new Category(R.mipmap.web, "Web", 1003));
+        categories.add(new Category(R.mipmap.design, "Design", 1003));
+        categories.add(new Category(R.mipmap.mobile, "Mobile", 1003));
+        categories.add(new Category(R.mipmap.tester, "Tester", 1003));
+        categories.add(new Category(R.mipmap.data, "Database", 1003));
+    }
 }

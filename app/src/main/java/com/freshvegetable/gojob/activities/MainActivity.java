@@ -5,6 +5,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -31,11 +32,12 @@ public class MainActivity extends AppCompatActivity {
     NavigationView navView;
     @BindView(R.id.drawer_layout)
     DrawerLayout drawerLayout;
-    //    @BindView(R.id.pager)
+    @BindView(R.id.pager)
+    ViewPager pager;
     @BindView(R.id.tabLayout)
     TabLayout tabLayout;
-    @BindView(R.id.categoryListView)
-    RecyclerView categoryListView;
+//    @BindView(R.id.categoryListView)
+//    RecyclerView categoryListView;
 
     private CategoryAdapter mCategoryAdapter;
     private SlidingPagerAdapter mPagerAdapter;
@@ -50,11 +52,14 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout.setDrawerListener(toggle);
         toggle.syncState();
 
-        mCategoryAdapter = new CategoryAdapter(this);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
-        categoryListView.setLayoutManager(mLayoutManager);
-        categoryListView.setAdapter(mCategoryAdapter);
-        categoryListView.setItemAnimator(new DefaultItemAnimator());
+        mPagerAdapter = new SlidingPagerAdapter(getSupportFragmentManager());
+//        mCategoryAdapter = new CategoryAdapter(this);
+        pager.setAdapter(mPagerAdapter);
+        tabLayout.setupWithViewPager(pager);
+//        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+//        categoryListView.setLayoutManager(mLayoutManager);
+//        categoryListView.setAdapter(mCategoryAdapter);
+//        categoryListView.setItemAnimator(new DefaultItemAnimator());
 
 //        mPagerAdapter = new SlidingPagerAdapter(getSupportFragmentManager());
 //        pager.setAdapter(mPagerAdapter);

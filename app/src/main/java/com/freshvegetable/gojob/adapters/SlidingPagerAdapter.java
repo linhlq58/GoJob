@@ -40,7 +40,7 @@ public class SlidingPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return titles.length;
+        return 3;
     }
 
     @Override
