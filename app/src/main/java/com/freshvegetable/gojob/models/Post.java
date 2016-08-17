@@ -1,5 +1,8 @@
 package com.freshvegetable.gojob.models;
 
+
+import java.text.SimpleDateFormat;
+
 /**
  * Created by NamVp on 16/08/2016.
  */
@@ -8,9 +11,11 @@ public class Post {
     private Long createTime;
     private String title;
     private String content;
-    private String[] imgUrl;
+    private int[] imgUrl;
 
-    public Post(String user, Long createTime, String title, String content, String[] imgUrl) {
+    private SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm  dd/MM/yyyy");
+
+    public Post(String user, Long createTime, String title, String content, int[] imgUrl) {
         this.user = user;
         this.createTime = createTime;
         this.title = title;
@@ -50,11 +55,11 @@ public class Post {
         this.content = content;
     }
 
-    public String[] getImgUrl() {
+    public int[] getImgUrl() {
         return imgUrl;
     }
 
-    public void setImgUrl(String[] imgUrl) {
+    public void setImgUrl(int[] imgUrl) {
         this.imgUrl = imgUrl;
     }
 }
