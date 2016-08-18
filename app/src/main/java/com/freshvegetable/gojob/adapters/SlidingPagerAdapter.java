@@ -3,7 +3,6 @@ package com.freshvegetable.gojob.adapters;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.view.View;
 
 import com.freshvegetable.gojob.fragments.CategoryFragment;
 import com.freshvegetable.gojob.fragments.EndingSoonFragment;
@@ -27,9 +26,8 @@ public class SlidingPagerAdapter extends FragmentPagerAdapter {
                 return new NewestFragment();
             case 2:
                 return new EndingSoonFragment();
-            default:
-                return null;
         }
+        return new Fragment();
     }
 
     private String[] titles = {
@@ -40,12 +38,7 @@ public class SlidingPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 3;
-    }
-
-    @Override
-    public boolean isViewFromObject(View view, Object object) {
-        return false;
+        return titles.length;
     }
 
     @Override
