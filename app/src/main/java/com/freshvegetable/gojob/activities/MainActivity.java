@@ -13,6 +13,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 
 import com.freshvegetable.gojob.R;
@@ -53,17 +54,8 @@ public class MainActivity extends AppCompatActivity {
         toggle.syncState();
 
         mPagerAdapter = new SlidingPagerAdapter(getSupportFragmentManager());
-//        mCategoryAdapter = new CategoryAdapter(this);
         pager.setAdapter(mPagerAdapter);
         tabLayout.setupWithViewPager(pager);
-//        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
-//        categoryListView.setLayoutManager(mLayoutManager);
-//        categoryListView.setAdapter(mCategoryAdapter);
-//        categoryListView.setItemAnimator(new DefaultItemAnimator());
-
-//        mPagerAdapter = new SlidingPagerAdapter(getSupportFragmentManager());
-//        pager.setAdapter(mPagerAdapter);
-//        tabLayout.setupWithViewPager(pager);
 
         navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @SuppressWarnings("StatementWithEmptyBody")
@@ -72,6 +64,13 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
     }
 
     @Override

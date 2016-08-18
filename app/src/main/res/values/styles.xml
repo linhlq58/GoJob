@@ -11,4 +11,15 @@
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:textColorPrimary">@color/textColorPrimary</item>
+        <item name="android:textColorSecondary">@color/textColorSecondary</item>
+        <item name="android:actionMenuTextColor">@color/textColorPrimary</item>
+        <item name="android:actionOverflowButtonStyle">@style/Widget.AppCompat.ActionButton.Overflow.Icon</item>
+    </style>
+
+    <style name="Widget.AppCompat.ActionButton.Overflow.Icon" parent="@style/Widget.AppCompat.ActionButton.Overflow">
+        <item name="android:tint">@color/textColorPrimary</item>
+    </style>
 </resources>
