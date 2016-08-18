@@ -7,12 +7,8 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.freshvegetable.gojob.R;
 import com.freshvegetable.gojob.utils.Url;
@@ -56,7 +52,6 @@ public class SignInActivity extends AppCompatActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btnSignIn:
-                if (Boolean.FALSE) {
                     if (etSignInUsername.getText().toString().equals("")) {
                         Snackbar.make(container, "Please enter your Username", Snackbar.LENGTH_SHORT).setAction("OKAY", null).show();
                     } else if (etSignInPassword.getText().toString().equals("")) {
@@ -70,14 +65,16 @@ public class SignInActivity extends AppCompatActivity {
                         client.post(url, params, new AsyncHttpResponseHandler() {
                             @Override
                             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                                String responce = new String(responseBody, StandardCharsets.UTF_8);
+                                String response = new String(responseBody, StandardCharsets.UTF_8);
                                 try {
-                                    JSONObject jObject = new JSONObject(responce);
+                                    JSONObject jObject = new JSONObject(response);
                                     Log.d("result", jObject.toString());
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
                                 Snackbar.make(container, "Sign in Success", Snackbar.LENGTH_SHORT).show();
+                                Intent intent = new Intent(SignInActivity.this, MainActivity.class);
+                                startActivity(intent);
                             }
 
                             @Override
@@ -85,11 +82,9 @@ public class SignInActivity extends AppCompatActivity {
                                 Snackbar.make(container, "Sign in failed", Snackbar.LENGTH_SHORT).setAction("RETRY", null).show();
                             }
                         });
+
                     }
-                } else {
-                    Intent intent = new Intent(SignInActivity.this, MainActivity.class);
-                    startActivity(intent);
-                }
+
                 break;
             case R.id.btnSignUp:
                 Intent intent = new Intent(SignInActivity.this, SignUpActivity.class);
