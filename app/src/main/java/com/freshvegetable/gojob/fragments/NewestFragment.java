@@ -9,9 +9,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
 import com.freshvegetable.gojob.R;
 import com.freshvegetable.gojob.adapters.PostAdapter;
 import com.freshvegetable.gojob.models.Post;
+import com.freshvegetable.gojob.utils.Url;
+
+import org.json.JSONArray;
 
 import java.util.ArrayList;
 
@@ -23,6 +32,8 @@ public class NewestFragment extends Fragment {
     private PostAdapter mPostAdapter;
     private ArrayList<Post> posts;
 
+    private RequestQueue mQueue;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,14 +43,26 @@ public class NewestFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        mQueue = Volley.newRequestQueue(this.getContext());
         super.onCreateView(inflater, container, savedInstanceState);
         View rootView = inflater.inflate(R.layout.fragmant_newest, container, false);
         newestPortList = (ListView) rootView.findViewById(R.id.newestPortList);
         initPostList();
         mPostAdapter = new PostAdapter(this.getContext(), posts);
         newestPortList.setAdapter(mPostAdapter);
-        Log.d("post: ", String.valueOf(mPostAdapter.getCount()));
-        Log.d("post: ", String.valueOf(newestPortList.getChildCount()));
+        String url = Url.BASE_URL + Url.POST_API_URL;
+        JsonArrayRequest postRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                Log.d("Count", String.valueOf(response.length()));
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+        mQueue.add(postRequest);
         return rootView;
     }
 

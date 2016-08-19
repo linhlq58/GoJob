@@ -10,7 +10,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.freshvegetable.gojob.R;
-import com.freshvegetable.gojob.utils.Url;
+//import com.freshvegetable.gojob.utils.Url;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -61,31 +61,31 @@ public class SignUpActivity extends AppCompatActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btnSignUp:
-                String url = Url.BASE_URL + Url.SIGN_UP_API_URL;
+//                String url = Url.BASE_URL + Url.SIGN_UP_API_URL;
                 RequestParams params = new RequestParams();
                 params.put("firstName", etSignUpFirstName.getText().toString());
                 params.put("lastName", etSignUpLastName.getText().toString());
                 params.put("email", etSignUpEmail.getText().toString());
                 params.put("username", etSignUpUsername.getText().toString());
                 params.put("password", etSignUpPassword.getText().toString());
-                client.post(SignUpActivity.this, url, params, new AsyncHttpResponseHandler() {
-                    @Override
-                    public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                        String response = new  String(responseBody, StandardCharsets.UTF_8);
-                        try {
-                            JSONObject jObject = new JSONObject(response);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                        Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
-                        startActivity(intent);
-                    }
-
-                    @Override
-                    public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-
-                    }
-                });
+//                client.post(SignUpActivity.this, url, params, new AsyncHttpResponseHandler() {
+//                    @Override
+//                    public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+//                        String response = new  String(responseBody, StandardCharsets.UTF_8);
+//                        try {
+//                            JSONObject jObject = new JSONObject(response);
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//                        }
+//                        Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
+//                        startActivity(intent);
+//                    }
+//
+//                    @Override
+//                    public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+//
+//                    }
+//                });
 
                 break;
             case R.id.tvSignIn:

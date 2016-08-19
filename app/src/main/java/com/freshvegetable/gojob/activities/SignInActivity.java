@@ -10,21 +10,25 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.freshvegetable.gojob.R;
 import com.freshvegetable.gojob.utils.Url;
 import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import cz.msebera.android.httpclient.Header;
 
 /**
  * Created by NamVp on 02/08/2016.
@@ -38,6 +42,7 @@ public class SignInActivity extends AppCompatActivity {
     @BindView(R.id.container)
     RelativeLayout container;
     private AsyncHttpClient client = null;
+    private RequestQueue mQueue;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -59,31 +64,70 @@ public class SignInActivity extends AppCompatActivity {
                 } else {
 
                     String url = Url.BASE_URL + Url.SIGN_IN_API_URL;
-                    RequestParams params = new RequestParams();
-                    params.put("username", etSignInUsername.getText().toString());
-                    params.put("password", etSignInPassword.getText().toString());
-                    client.post(url, params, new AsyncHttpResponseHandler() {
+//                    RequestParams params = new RequestParams();
+//                    params.put("username", etSignInUsername.getText().toString());
+//                    params.put("password", etSignInPassword.getText().toString());
+//                    client.post(url, params, new AsyncHttpResponseHandler() {
+//                        @Override
+//                        public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+//                            String response = new String(responseBody, StandardCharsets.UTF_8);
+//                            try {
+//                                JSONObject jObject = new JSONObject(response);
+//                                Log.d("result", jObject.toString());
+//                            } catch (JSONException e) {
+//                                e.printStackTrace();
+//                            }
+//                            Snackbar.make(container, "Sign in Success", Snackbar.LENGTH_SHORT).show();
+//                            Intent intent = new Intent(SignInActivity.this, MainActivity.class);
+//                            startActivity(intent);
+//                        }
+//
+//                        @Override
+//                        public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+//                            Snackbar.make(container, "Username of password is incorrect", Snackbar.LENGTH_SHORT).setAction("RETRY", null).show();
+//
+//                        }
+//                    });
+//
+//                }
+                    Map<String, String> mParam = new HashMap<>();
+                    mParam.put("username", etSignInUsername.getText().toString());
+                    mParam.put("password", etSignInPassword.getText().toString());
+
+                    mQueue = Volley.newRequestQueue(SignInActivity.this);
+                    JsonObjectRequest loginRequest = new JsonObjectRequest(Request.Method.POST, url,
+                            new JSONObject(mParam),
+                            new Response.Listener<JSONObject>() {
+                                @Override
+                                public void onResponse(JSONObject response) {
+                                    Intent intent = new Intent(SignInActivity.this, MainActivity.class);
+                                    startActivity(intent);
+                                    Log.d("result", response.toString());
+                                }
+                            },
+                            new Response.ErrorListener() {
+                                @Override
+                                public void onErrorResponse(VolleyError error) {
+                                    Snackbar.make(container, "Username of password is incorrect", Snackbar.LENGTH_SHORT).setAction("RETRY", null).show();
+                                    Log.e("Error:", error.toString());
+                                }
+                            }) {
                         @Override
-                        public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                            String response = new String(responseBody, StandardCharsets.UTF_8);
-                            try {
-                                JSONObject jObject = new JSONObject(response);
-                                Log.d("result", jObject.toString());
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                            Snackbar.make(container, "Sign in Success", Snackbar.LENGTH_SHORT).show();
-                            Intent intent = new Intent(SignInActivity.this, MainActivity.class);
-                            startActivity(intent);
+                        public Map<String, String> getHeaders() throws AuthFailureError {
+                            HashMap<String, String> headers = new HashMap<String, String>();
+                            headers.put("Content-Type", "application/json; charset=utf-8");
+                            return headers;
                         }
 
                         @Override
-                        public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                            Snackbar.make(container, "Username of password is incorrect", Snackbar.LENGTH_SHORT).setAction("RETRY", null).show();
-
+                        protected Map<String, String> getParams() throws AuthFailureError {
+                            Map<String, String> mParam = new HashMap<>();
+                            mParam.put("username", etSignInUsername.getText().toString());
+                            mParam.put("password", etSignInPassword.getText().toString());
+                            return mParam;
                         }
-                    });
-
+                    };
+                    mQueue.add(loginRequest);
                 }
 
                 break;
