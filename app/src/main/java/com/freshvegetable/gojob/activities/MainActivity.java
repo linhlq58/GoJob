@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
+import android.support.v4.util.CircularArray;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -16,6 +17,7 @@ import android.view.MenuItem;
 import com.freshvegetable.gojob.R;
 import com.freshvegetable.gojob.adapters.CategoryAdapter;
 import com.freshvegetable.gojob.adapters.SlidingPagerAdapter;
+import com.freshvegetable.gojob.models.Category;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -89,4 +91,5 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, NewPostActivity.class);
         startActivity(intent);
     }
+
 }

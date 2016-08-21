@@ -13,6 +13,7 @@ public class VolleyRequest {
     public static final String EMAIL = "email";
     public static final String PASSWORD = "password";
 
+    public static final String ID = "_id";
     public static final String POST_CONTENT = "postContent";
     public static final String TITLE = "title";
     public static final String IMAGE_URL = "postImageUrl";

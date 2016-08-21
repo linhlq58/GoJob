@@ -19,7 +19,6 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnItemClick;
 
 /**
  * Created by Nam on 8/15/2016.
@@ -51,7 +50,7 @@ public class CategoryFragment extends Fragment {
         categoryListView.setAdapter(mCategoryAdapter);
         categoryListView.setItemAnimator(new DefaultItemAnimator());
         Log.d("count", categoryListView.getChildCount() + "");
-        
+
         super.onViewCreated(view, savedInstanceState);
 
     }
@@ -59,10 +58,10 @@ public class CategoryFragment extends Fragment {
 
     private void initList() {
         categories = new ArrayList<>();
-        categories.add(new Category(R.mipmap.web, "Web", 1003));
-        categories.add(new Category(R.mipmap.design, "Design", 1003));
-        categories.add(new Category(R.mipmap.mobile, "Mobile", 1003));
-        categories.add(new Category(R.mipmap.tester, "Tester", 1003));
-        categories.add(new Category(R.mipmap.data, "Database", 1003));
+        categories.add(new Category("57b95bd0171a74810a11ad40", R.mipmap.web, "Web", 1003));
+        categories.add(new Category("57b95c54171a74810a11ad41", R.mipmap.design, "Design", 1003));
+        categories.add(new Category("57b95c63171a74810a11ad42", R.mipmap.mobile, "Mobile", 1003));
+        categories.add(new Category("57b95c73171a74810a11ad43", R.mipmap.tester, "Tester", 1003));
+        categories.add(new Category("57b95c7a171a74810a11ad44", R.mipmap.data, "Database", 1003));
     }
 }

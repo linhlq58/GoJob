@@ -1,6 +1,7 @@
 package com.freshvegetable.gojob.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
@@ -10,11 +11,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.freshvegetable.gojob.R;
+import com.freshvegetable.gojob.activities.CategoryActivity;
 import com.freshvegetable.gojob.models.Category;
+import com.freshvegetable.gojob.utils.VolleyRequest;
 
 import java.util.ArrayList;
 
@@ -51,12 +53,16 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         final Category category = categories.get(position);
         holder.categoryIcon.setImageDrawable(ContextCompat.getDrawable(holder.mContext, category.getCategoryImage()));
         holder.categoryTitle.setText(category.getCategoryTitle());
-        holder.postCount.setText(String.valueOf(category.getPostCount()) + "posts");
+        holder.postCount.setText(String.valueOf(category.getPostCount()) + " posts");
         holder.container.setBackgroundColor(backgrounds[position]);
         holder.container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(holder.container, category.getCategoryTitle(), Snackbar.LENGTH_SHORT).show();
+                Intent intent = new Intent(holder.mContext, CategoryActivity.class);
+                intent.putExtra(VolleyRequest.ID,category.get_id());
+                intent.putExtra(VolleyRequest.TITLE, category.getCategoryTitle());
+                holder.mContext.startActivity(intent);
             }
         });
     }

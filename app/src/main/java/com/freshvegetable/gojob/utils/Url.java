@@ -14,7 +14,7 @@ public interface Url {
 
     //    Post APIs
     public static final String POST_API_URL = "/api/posts";
-    public static final String GET_POST_BY_CATEGORY_URL = "/api/posts/categories/:categoryId";
+    public static final String GET_POST_BY_CATEGORY_URL = "/api/posts/categories/";
     public static final String GET_POST_DETAIL_URL = "/api/posts/:postId";
     public static final String GET_ALL_CATEGORY_URL = "/api/categories";
 }
