@@ -19,6 +19,7 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnItemClick;
 
 /**
  * Created by Nam on 8/15/2016.
@@ -50,8 +51,11 @@ public class CategoryFragment extends Fragment {
         categoryListView.setAdapter(mCategoryAdapter);
         categoryListView.setItemAnimator(new DefaultItemAnimator());
         Log.d("count", categoryListView.getChildCount() + "");
+        
         super.onViewCreated(view, savedInstanceState);
+
     }
+
 
     private void initList() {
         categories = new ArrayList<>();

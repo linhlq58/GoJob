@@ -7,16 +7,16 @@ import org.json.JSONObject;
  */
 public class VolleyRequest {
 
-    private final String FIRST_NAME = "firstName";
-    private final String LAST_NAME = "lastBane";
-    private final String USERNAME = "user";
-    private final String EMAIL = "email";
-    private final String PASSWORD = "password";
+    public static final String FIRST_NAME = "firstName";
+    public static final String LAST_NAME = "lastBane";
+    public static final String USERNAME = "user";
+    public static final String EMAIL = "email";
+    public static final String PASSWORD = "password";
 
-    private final String POST_CONTENT = "postContent";
-    private final String TITLE = "title";
-    private final String IMAGE_URL = "postImageUrl";
-    private final String CATEGORY = "category";
+    public static final String POST_CONTENT = "postContent";
+    public static final String TITLE = "title";
+    public static final String IMAGE_URL = "postImageUrl";
+    public static final String CATEGORY = "category";
 
 
 

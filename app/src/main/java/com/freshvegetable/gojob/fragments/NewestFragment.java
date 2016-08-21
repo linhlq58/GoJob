@@ -61,17 +61,19 @@ public class NewestFragment extends Fragment {
         newestPortList.setItemAnimator(new DefaultItemAnimator());
         newestPortList.setAdapter(mPostAdapter);
         String url = Url.BASE_URL + Url.POST_API_URL;
-        JsonArrayRequest postRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
-            @Override
-            public void onResponse(JSONArray response) {
-                Log.d("Count", String.valueOf(response.length()));
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
+        JsonArrayRequest postRequest = new JsonArrayRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        Log.d("Count", String.valueOf(response.length()));
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
 
-            }
-        });
+                    }
+                });
         mQueue.add(postRequest);
         return rootView;
     }

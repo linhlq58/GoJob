@@ -4,26 +4,30 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.freshvegetable.gojob.R;
-//import com.freshvegetable.gojob.utils.Url;
+import com.freshvegetable.gojob.utils.Url;
+import com.freshvegetable.gojob.utils.VolleyRequest;
 import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import cz.msebera.android.httpclient.Header;
+
+//import com.freshvegetable.gojob.utils.Url;
 
 /**
  * Created by Nam on 8/4/2016.
@@ -61,31 +65,30 @@ public class SignUpActivity extends AppCompatActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btnSignUp:
-//                String url = Url.BASE_URL + Url.SIGN_UP_API_URL;
-                RequestParams params = new RequestParams();
-                params.put("firstName", etSignUpFirstName.getText().toString());
-                params.put("lastName", etSignUpLastName.getText().toString());
-                params.put("email", etSignUpEmail.getText().toString());
-                params.put("username", etSignUpUsername.getText().toString());
-                params.put("password", etSignUpPassword.getText().toString());
-//                client.post(SignUpActivity.this, url, params, new AsyncHttpResponseHandler() {
-//                    @Override
-//                    public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-//                        String response = new  String(responseBody, StandardCharsets.UTF_8);
-//                        try {
-//                            JSONObject jObject = new JSONObject(response);
-//                        } catch (JSONException e) {
-//                            e.printStackTrace();
-//                        }
-//                        Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
-//                        startActivity(intent);
-//                    }
-//
-//                    @Override
-//                    public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-//
-//                    }
-//                });
+                String url = Url.BASE_URL + Url.SIGN_UP_API_URL;
+                HashMap<String, String> param = new HashMap<>();
+                param.put(VolleyRequest.FIRST_NAME, etSignUpFirstName.getText().toString());
+                param.put(VolleyRequest.LAST_NAME, etSignUpLastName.getText().toString());
+                param.put(VolleyRequest.EMAIL, etSignUpEmail.getText().toString());
+                param.put(VolleyRequest.USERNAME, etSignUpUsername.getText().toString());
+                param.put(VolleyRequest.PASSWORD, etSignUpPassword.getText().toString());
+
+                JsonObjectRequest signUpRequest = new JsonObjectRequest(Request.Method.POST, url,
+                        new JSONObject(param),
+                        new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject jsonObject) {
+                                Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
+                                startActivity(intent);
+                            }
+                        },
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError volleyError) {
+                                Log.d("Error", volleyError.toString());
+                            }
+                        }
+                );
 
                 break;
             case R.id.tvSignIn:

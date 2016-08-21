@@ -1,42 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/container"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="136dp"
-    android:background="@color/colorAccent"
-    android:gravity="bottom"
-    android:orientation="horizontal"
-    android:padding="16dp">
+    android:gravity="bottom">
 
-    <ImageView
-        android:id="@+id/imgCategoryIcon"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:layout_gravity="left|center"
-        android:layout_marginRight="8dp"
-        android:scaleType="fitCenter" />
-
-    <LinearLayout
+    <android.support.v7.widget.CardView
+        android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:foreground="?android:attr/selectableItemBackground"
 
-        <TextView
-            android:id="@+id/categoryTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:text="Web"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@color/textColorPrimary" />
+        >
 
-        <TextView
-            android:id="@+id/categoryPostCount"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:text="1320 posts"
-            android:textColor="@color/textColorSecondary" />
-    </LinearLayout>
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:padding="16dp">
+
+            <ImageView
+                android:id="@+id/imgCategoryIcon"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_gravity="left|center"
+                android:layout_marginRight="8dp"
+                android:scaleType="fitCenter"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/categoryTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:text="Web"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@color/textColorPrimary"/>
+
+                <TextView
+                    android:id="@+id/categoryPostCount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:text="1320 posts"
+                    android:textColor="@color/textColorSecondary"/>
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
 </LinearLayout>

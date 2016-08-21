@@ -6,8 +6,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.freshvegetable.gojob.R;
@@ -16,6 +16,7 @@ import com.freshvegetable.gojob.models.Post;
 import java.util.ArrayList;
 
 import butterknife.BindView;
+import butterknife.BindViews;
 import butterknife.ButterKnife;
 
 /**
@@ -42,6 +43,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolderPost
         TextView tvPostContent;
         @BindView(R.id.imgPost)
         ImageView imgPost;
+        @BindView(R.id.divider)
+        LinearLayout divider;
 
         public ViewHolderPost(View view) {
             super(view);
@@ -62,6 +65,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolderPost
 //        holder.tvCreateTime.setText();
         holder.tvPostContent.setText(post.getContent());
         holder.imgPost.setImageDrawable(ContextCompat.getDrawable(mContext, post.getImgUrl()[0]));
+        if (position == posts.size() - 1) holder.divider.setVisibility(View.GONE);
     }
 
     @Override

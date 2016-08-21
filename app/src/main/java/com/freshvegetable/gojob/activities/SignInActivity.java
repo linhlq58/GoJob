@@ -19,6 +19,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.freshvegetable.gojob.R;
 import com.freshvegetable.gojob.utils.Url;
+import com.freshvegetable.gojob.utils.VolleyRequest;
 import com.loopj.android.http.AsyncHttpClient;
 
 import org.json.JSONObject;
@@ -91,8 +92,8 @@ public class SignInActivity extends AppCompatActivity {
 //
 //                }
                     Map<String, String> mParam = new HashMap<>();
-                    mParam.put("username", etSignInUsername.getText().toString());
-                    mParam.put("password", etSignInPassword.getText().toString());
+                    mParam.put(VolleyRequest.USERNAME, etSignInUsername.getText().toString());
+                    mParam.put(VolleyRequest.PASSWORD, etSignInPassword.getText().toString());
 
                     mQueue = Volley.newRequestQueue(SignInActivity.this);
                     JsonObjectRequest loginRequest = new JsonObjectRequest(Request.Method.POST, url,

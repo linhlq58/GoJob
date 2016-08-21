@@ -2,7 +2,9 @@ package com.freshvegetable.gojob.adapters;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,12 +47,18 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(ViewHolderCategory holder, int position) {
-        Category category = categories.get(position);
+    public void onBindViewHolder(final ViewHolderCategory holder, int position) {
+        final Category category = categories.get(position);
         holder.categoryIcon.setImageDrawable(ContextCompat.getDrawable(holder.mContext, category.getCategoryImage()));
         holder.categoryTitle.setText(category.getCategoryTitle());
         holder.postCount.setText(String.valueOf(category.getPostCount()) + "posts");
         holder.container.setBackgroundColor(backgrounds[position]);
+        holder.container.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(holder.container, category.getCategoryTitle(), Snackbar.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
@@ -71,7 +79,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         @BindView(R.id.categoryPostCount)
         TextView postCount;
         @BindView(R.id.container)
-        LinearLayout container;
+        CardView container;
 
         Context mContext = null;
 
