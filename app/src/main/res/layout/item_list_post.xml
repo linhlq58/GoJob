@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:padding="16dp">
 
     <TextView
         android:id="@+id/userName"
@@ -11,15 +11,23 @@
         android:layout_height="wrap_content"
         android:text="Meo 3 the"
         android:textColor="@color/textPrimaryDark"
-        android:textStyle="bold" />
+        android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/tvCreateTime"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="12sp"
+        android:layout_marginBottom="8dp"
         android:text="12 gio truoc"
-        android:layout_marginBottom="8dp"/>
+        android:textSize="12sp"/>
+
+    <TextView
+        android:id="@+id/tvPostTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Blahblahblah"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@android:color/black"/>
 
     <TextView
         android:id="@+id/tvPostContent"
@@ -29,14 +37,12 @@
         />
 
 
-
     <ImageView
         android:id="@+id/imgPost"
         android:layout_width="match_parent"
         android:layout_height="272dp"
         android:scaleType="fitXY"
         android:src="@drawable/mirana"/>
-
 
 
 </LinearLayout>

@@ -5,7 +5,7 @@ package com.freshvegetable.gojob.utils;
  */
 public interface Url {
     //    public static final String BASE_URL = "http://localhost:3000";
-    public static final String BASE_URL = "http://192.168.100.19:3000";
+    public static final String BASE_URL = "http://192.168.43.254:3000";
 
     //    Account APIs
     public static final String SIGN_IN_API_URL = "/api/auth/signin";

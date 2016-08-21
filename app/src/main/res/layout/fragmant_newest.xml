@@ -4,13 +4,13 @@
     android:layout_height="match_parent"
     android:background="@android:color/white">
 
-    <ListView
+    <android.support.v7.widget.RecyclerView
         android:id="@+id/newestPortList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:divider="#0C0f0f0f"
         android:dividerHeight="8dp">
 
-    </ListView>
+    </android.support.v7.widget.RecyclerView>
 
 </LinearLayout>

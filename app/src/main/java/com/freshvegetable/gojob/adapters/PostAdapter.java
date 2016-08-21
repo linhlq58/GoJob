@@ -2,6 +2,7 @@ package com.freshvegetable.gojob.adapters;
 
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +21,7 @@ import butterknife.ButterKnife;
 /**
  * Created by NamVp on 17/08/2016.
  */
-public class PostAdapter extends BaseAdapter {
+public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolderPost> {
     private Context mContext;
     private final int layoutId = R.layout.item_list_post;
     private ArrayList<Post> posts;
@@ -30,44 +31,7 @@ public class PostAdapter extends BaseAdapter {
         this.posts = posts;
     }
 
-    @Override
-    public int getCount() {
-        return posts.size();
-    }
-
-    @Override
-    public Object getItem(int i) {
-        return null;
-    }
-
-    @Override
-    public long getItemId(int i) {
-        return i;
-    }
-
-    @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
-        ViewHolderPost holder = null;
-        if (view == null) {
-            view = LayoutInflater.from(mContext).inflate(layoutId, viewGroup, false);
-            holder = new ViewHolderPost(view);
-            view.setTag(holder);
-        } else {
-            holder = (ViewHolderPost) view.getTag();
-        }
-
-        Post post = posts.get(i);
-
-        holder.tvUsername.setText(post.getUser());
-        if (post.getContent().equals("")) holder.tvPostContent.setVisibility(View.GONE);
-        else holder.tvPostContent.setText(post.getContent());
-        if (post.getImgUrl().length == 0) holder.imgPost.setVisibility(View.GONE);
-        else
-            holder.imgPost.setImageDrawable(ContextCompat.getDrawable(mContext, post.getImgUrl()[0]));
-        return view;
-    }
-
-    public static class ViewHolderPost {
+    public static class ViewHolderPost extends RecyclerView.ViewHolder {
         private Context mContext;
 
         @BindView(R.id.userName)
@@ -80,7 +44,28 @@ public class PostAdapter extends BaseAdapter {
         ImageView imgPost;
 
         public ViewHolderPost(View view) {
+            super(view);
             ButterKnife.bind(this, view);
         }
+    }
+
+    @Override
+    public ViewHolderPost onCreateViewHolder(ViewGroup parent, int viewType) {
+        View itemView = LayoutInflater.from(mContext).inflate(R.layout.item_list_post, parent, false);
+        return new ViewHolderPost(itemView);
+    }
+
+    @Override
+    public void onBindViewHolder(ViewHolderPost holder, int position) {
+        Post post = posts.get(position);
+        holder.tvUsername.setText(post.getUser());
+//        holder.tvCreateTime.setText();
+        holder.tvPostContent.setText(post.getContent());
+        holder.imgPost.setImageDrawable(ContextCompat.getDrawable(mContext, post.getImgUrl()[0]));
+    }
+
+    @Override
+    public int getItemCount() {
+        return posts.size();
     }
 }

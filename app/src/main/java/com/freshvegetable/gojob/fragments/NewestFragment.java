@@ -3,11 +3,13 @@ package com.freshvegetable.gojob.fragments;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -24,11 +26,15 @@ import org.json.JSONArray;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by Nam on 8/15/2016.
  */
 public class NewestFragment extends Fragment {
-    ListView newestPortList;
+    @BindView(R.id.newestPortList)
+    RecyclerView newestPortList;
     private PostAdapter mPostAdapter;
     private ArrayList<Post> posts;
 
@@ -46,9 +52,13 @@ public class NewestFragment extends Fragment {
         mQueue = Volley.newRequestQueue(this.getContext());
         super.onCreateView(inflater, container, savedInstanceState);
         View rootView = inflater.inflate(R.layout.fragmant_newest, container, false);
-        newestPortList = (ListView) rootView.findViewById(R.id.newestPortList);
+        ButterKnife.bind(this, rootView);
         initPostList();
         mPostAdapter = new PostAdapter(this.getContext(), posts);
+        newestPortList.setHasFixedSize(true);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this.getContext());
+        newestPortList.setLayoutManager(mLayoutManager);
+        newestPortList.setItemAnimator(new DefaultItemAnimator());
         newestPortList.setAdapter(mPostAdapter);
         String url = Url.BASE_URL + Url.POST_API_URL;
         JsonArrayRequest postRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
