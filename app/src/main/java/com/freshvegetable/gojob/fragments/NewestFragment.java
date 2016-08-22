@@ -16,6 +16,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.freshvegetable.gojob.R;
 import com.freshvegetable.gojob.adapters.PostAdapter;
@@ -56,22 +57,35 @@ public class NewestFragment extends Fragment {
         super.onCreateView(inflater, container, savedInstanceState);
         View rootView = inflater.inflate(R.layout.fragmant_newest, container, false);
         ButterKnife.bind(this, rootView);
-        initPostList();
+        getPostFromServer();
         mPostAdapter = new PostAdapter(this.getContext(), posts);
         newestPortList.setHasFixedSize(true);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this.getContext());
         newestPortList.setLayoutManager(mLayoutManager);
         newestPortList.setItemAnimator(new DefaultItemAnimator());
         newestPortList.setAdapter(mPostAdapter);
+
+        return rootView;
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+    }
+
+    private void getPostFromServer() {
+        posts = new ArrayList<>();
         String url = Url.BASE_URL + Url.POST_API_URL;
         JsonArrayRequest postRequest = new JsonArrayRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
-                        for (int i = 0; i < response.length(); i++){
+                        for (int i = 0; i < response.length(); i++) {
                             try {
                                 JSONObject mJSONObject = response.getJSONObject(i);
-
+                                JSONObject user = mJSONObject.getJSONObject("user");
+                                String id = user.getString(VolleyRequest.ID);
+                                getUserData(id);
                                 String title = mJSONObject.getString(VolleyRequest.TITLE);
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -83,21 +97,32 @@ public class NewestFragment extends Fragment {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-
+                        Log.e("Error:", error.toString());
                     }
                 });
         mQueue.add(postRequest);
-        return rootView;
     }
 
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-    }
+    private void getUserData(String id) {
+        String url = Url.BASE_URL + Url.GET_USER_DETAIL_URL + id;
 
-    private void initPostList() {
-        posts = new ArrayList<>();
-        posts.add(new Post("Meo_3_the", System.currentTimeMillis(), "blahh", "Ai ve dc con meo nay k", new int[]{R.drawable.mirana}));
-        posts.add(new Post("Meo_3_the", System.currentTimeMillis(), "Chan doi", ":(((((((", new int[]{R.drawable.mirana}));
+        JsonObjectRequest userRequest = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            Log.d("User", response.getString(VolleyRequest.USERNAME));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("Error:", error.toString());
+                    }
+                }
+        );
     }
 }
