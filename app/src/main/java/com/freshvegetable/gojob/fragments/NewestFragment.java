@@ -21,8 +21,11 @@ import com.freshvegetable.gojob.R;
 import com.freshvegetable.gojob.adapters.PostAdapter;
 import com.freshvegetable.gojob.models.Post;
 import com.freshvegetable.gojob.utils.Url;
+import com.freshvegetable.gojob.utils.VolleyRequest;
 
 import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -65,7 +68,16 @@ public class NewestFragment extends Fragment {
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
-                        Log.d("Count", String.valueOf(response.length()));
+                        for (int i = 0; i < response.length(); i++){
+                            try {
+                                JSONObject mJSONObject = response.getJSONObject(i);
+
+                                String title = mJSONObject.getString(VolleyRequest.TITLE);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
                     }
                 },
                 new Response.ErrorListener() {
