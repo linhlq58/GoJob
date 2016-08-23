@@ -64,7 +64,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolderPost
         holder.tvUsername.setText(post.getUser());
 //        holder.tvCreateTime.setText();
         holder.tvPostContent.setText(post.getContent());
-        holder.imgPost.setImageDrawable(ContextCompat.getDrawable(mContext, post.getImgUrl()[0]));
+//        holder.imgPost.setImageDrawable(ContextCompat.getDrawable(mContext, post.getImgUrl()[0]));
         if (position == posts.size() - 1) holder.divider.setVisibility(View.GONE);
     }
 

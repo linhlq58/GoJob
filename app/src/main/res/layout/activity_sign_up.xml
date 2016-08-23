@@ -42,10 +42,8 @@
             android:id="@+id/etSignUpEmail"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-
             android:hint="Email"
-            android:inputType="text"
-            android:maxLength="15"
+            android:inputType="textEmailAddress"
             android:textColorHint="#26000000" />
 
         <TextView

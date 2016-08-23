@@ -1,6 +1,8 @@
 package com.freshvegetable.gojob.models;
 
 
+import android.support.annotation.Nullable;
+
 import java.text.SimpleDateFormat;
 
 /**
@@ -11,16 +13,17 @@ public class Post {
     private Long createTime;
     private String title;
     private String content;
-    private int[] imgUrl;
+    private String[] imgUrl;
 
     private SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm  dd/MM/yyyy");
 
-    public Post(String user, Long createTime, String title, String content, int[] imgUrl) {
+    public Post(String user, Long createTime, String title, String content, @Nullable String[] imgUrl) {
         this.user = user;
         this.createTime = createTime;
         this.title = title;
         this.content = content;
-        this.imgUrl = imgUrl;
+        if (imgUrl != null)
+            this.imgUrl = imgUrl;
     }
 
     public String getUser() {
@@ -55,11 +58,11 @@ public class Post {
         this.content = content;
     }
 
-    public int[] getImgUrl() {
+    public String[] getImgUrl() {
         return imgUrl;
     }
 
-    public void setImgUrl(int[] imgUrl) {
+    public void setImgUrl(String[] imgUrl) {
         this.imgUrl = imgUrl;
     }
 }

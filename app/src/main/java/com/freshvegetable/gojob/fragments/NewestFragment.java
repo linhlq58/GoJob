@@ -21,6 +21,7 @@ import com.android.volley.toolbox.Volley;
 import com.freshvegetable.gojob.R;
 import com.freshvegetable.gojob.adapters.PostAdapter;
 import com.freshvegetable.gojob.models.Post;
+import com.freshvegetable.gojob.models.User;
 import com.freshvegetable.gojob.utils.Url;
 import com.freshvegetable.gojob.utils.VolleyRequest;
 
@@ -87,6 +88,7 @@ public class NewestFragment extends Fragment {
                                 String id = user.getString(VolleyRequest.ID);
                                 getUserData(id);
                                 String title = mJSONObject.getString(VolleyRequest.TITLE);
+                                Log.d("count", response.length() + "");
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
@@ -103,15 +105,20 @@ public class NewestFragment extends Fragment {
         mQueue.add(postRequest);
     }
 
-    private void getUserData(String id) {
+    private User.UserHolder getUserData(final String id) {
         String url = Url.BASE_URL + Url.GET_USER_DETAIL_URL + id;
+        final User.UserHolder[] userHolder = new User.UserHolder[1];
 
         JsonObjectRequest userRequest = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            Log.d("User", response.getString(VolleyRequest.USERNAME));
+                            String displayName = response.getString(VolleyRequest.DISPLAY_NAME);
+                            String username = response.getString(VolleyRequest.USERNAME);
+                            String profileImage = response.getString(VolleyRequest.PROFILE_IMAGE_URL);
+                            userHolder[0] = new User.UserHolder(id, displayName, username, profileImage);
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -124,5 +131,8 @@ public class NewestFragment extends Fragment {
                     }
                 }
         );
+        mQueue.add(userRequest);
+        Log.d("User", userHolder[0].toString());
+        return userHolder[0];
     }
 }

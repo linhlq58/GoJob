@@ -11,9 +11,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.freshvegetable.gojob.R;
 import com.freshvegetable.gojob.utils.Url;
 import com.freshvegetable.gojob.utils.VolleyRequest;
@@ -50,7 +52,7 @@ public class SignUpActivity extends AppCompatActivity {
     @BindView(R.id.etSignUpLastName)
     EditText etSignUpLastName;
 
-    private AsyncHttpClient client;
+    private RequestQueue mQueue;
 
 
     @Override
@@ -58,7 +60,7 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
         ButterKnife.bind(this);
-        client = new AsyncHttpClient();
+        mQueue = Volley.newRequestQueue(SignUpActivity.this);
     }
 
     @OnClick({R.id.btnSignUp, R.id.tvSignIn})
@@ -90,10 +92,13 @@ public class SignUpActivity extends AppCompatActivity {
                         }
                 );
 
+                mQueue.add(signUpRequest);
+
                 break;
             case R.id.tvSignIn:
                 this.finish();
                 break;
         }
+
     }
 }
