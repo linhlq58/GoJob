@@ -91,9 +91,6 @@ public class NewestFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         newestPortList.setHasFixedSize(true);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(view.getContext());
-        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) newestPortList.getLayoutParams();
-        params.height = LinearLayout.LayoutParams.WRAP_CONTENT;
-        newestPortList.setLayoutParams(params);
         newestPortList.setLayoutManager(mLayoutManager);
 
         getPostFromServer();

@@ -18,6 +18,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.freshvegetable.gojob.R;
 import com.freshvegetable.gojob.utils.Url;
+import com.freshvegetable.gojob.utils.Utils;
 import com.freshvegetable.gojob.utils.VolleyRequest;
 import com.loopj.android.http.AsyncHttpClient;
 
@@ -57,43 +58,47 @@ public class SignInActivity extends AppCompatActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btnSignIn:
-                if (etSignInUsername.getText().toString().equals("")) {
-                    Snackbar.make(container, "Please enter your Username", Snackbar.LENGTH_SHORT).
-                            setAction("OKAY", null).show();
-                } else if (etSignInPassword.getText().toString().equals("")) {
-                    Snackbar.make(container, "Enter your password", Snackbar.LENGTH_SHORT).
-                            setAction("OKAY", null).show();
+                if (!Utils.isNetworkConnected(SignInActivity.this)) {
+                    Snackbar.make(container, "No network connection", Snackbar.LENGTH_SHORT).show();
                 } else {
+                    if (etSignInUsername.getText().toString().equals("")) {
+                        Snackbar.make(container, "Please enter your Username", Snackbar.LENGTH_SHORT).
+                                setAction("OKAY", null).show();
+                    } else if (etSignInPassword.getText().toString().equals("")) {
+                        Snackbar.make(container, "Enter your password", Snackbar.LENGTH_SHORT).
+                                setAction("OKAY", null).show();
+                    } else {
 
-                    String url = Url.BASE_URL + Url.SIGN_IN_API_URL;
-                    Map<String, String> mParam = new HashMap<>();
+                        String url = Url.BASE_URL + Url.SIGN_IN_API_URL;
+                        Map<String, String> mParam = new HashMap<>();
 //                    mParam.put(VolleyRequest.USERNAME, etSignInUsername.getText().toString());
 //                    mParam.put(VolleyRequest.PASSWORD, etSignInPassword.getText().toString());
-                    mParam.put(VolleyRequest.USERNAME, "blahblahblah");
-                    mParam.put(VolleyRequest.PASSWORD, "Blah_123blah");
-                    Log.d("username", etSignInUsername.getText().toString());
-                    Log.d("password", etSignInPassword.getText().toString());
+                        mParam.put(VolleyRequest.USERNAME, "blahblahblah");
+                        mParam.put(VolleyRequest.PASSWORD, "Blah_123blah");
+                        Log.d("username", etSignInUsername.getText().toString());
+                        Log.d("password", etSignInPassword.getText().toString());
 
-                    mQueue = Volley.newRequestQueue(SignInActivity.this);
-                    JsonObjectRequest loginRequest = new JsonObjectRequest(Request.Method.POST, url,
-                            new JSONObject(mParam),
-                            new Response.Listener<JSONObject>() {
-                                @Override
-                                public void onResponse(JSONObject response) {
-                                    Intent intent = new Intent(SignInActivity.this, MainActivity.class);
-                                    startActivity(intent);
-                                    Log.d("result", response.toString());
+                        mQueue = Volley.newRequestQueue(SignInActivity.this);
+                        JsonObjectRequest loginRequest = new JsonObjectRequest(Request.Method.POST, url,
+                                new JSONObject(mParam),
+                                new Response.Listener<JSONObject>() {
+                                    @Override
+                                    public void onResponse(JSONObject response) {
+                                        Intent intent = new Intent(SignInActivity.this, MainActivity.class);
+                                        startActivity(intent);
+                                        Log.d("result", response.toString());
+                                    }
+                                },
+                                new Response.ErrorListener() {
+                                    @Override
+                                    public void onErrorResponse(VolleyError error) {
+                                        Snackbar.make(container, "Username of password is incorrect", Snackbar.LENGTH_SHORT).setAction("RETRY", null).show();
+                                        Log.e("Error:", error.toString());
+                                    }
                                 }
-                            },
-                            new Response.ErrorListener() {
-                                @Override
-                                public void onErrorResponse(VolleyError error) {
-                                    Snackbar.make(container, "Username of password is incorrect", Snackbar.LENGTH_SHORT).setAction("RETRY", null).show();
-                                    Log.e("Error:", error.toString());
-                                }
-                            }
-                    );
-                    mQueue.add(loginRequest);
+                        );
+                        mQueue.add(loginRequest);
+                    }
                 }
 
                 break;
