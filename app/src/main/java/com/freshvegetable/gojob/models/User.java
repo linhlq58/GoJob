@@ -1,5 +1,7 @@
 package com.freshvegetable.gojob.models;
 
+import android.support.annotation.Nullable;
+
 /**
  * Created by Nam on 8/12/2016.
  */
@@ -24,6 +26,39 @@ public class User {
 
     public static class UserHolder{
         public String id;
+
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
+        }
+
+        public String getDisplayName() {
+            return displayName;
+        }
+
+        public void setDisplayName(String displayName) {
+            this.displayName = displayName;
+        }
+
+        public String getUsername() {
+            return username;
+        }
+
+        public void setUsername(String username) {
+            this.username = username;
+        }
+
+        public String getProfileUrl() {
+            return profileUrl;
+        }
+
+        public void setProfileUrl(String profileUrl) {
+            this.profileUrl = profileUrl;
+        }
+
         public String displayName;
         public String username;
         public String profileUrl;
@@ -35,7 +70,7 @@ public class User {
             this.profileUrl = user.profileImageUrl;
         }
 
-        public UserHolder(String id, String displayName, String username, String profileUrl) {
+        public UserHolder(String id, String displayName, @Nullable String username, @Nullable String profileUrl) {
             this.id = id;
             this.displayName = displayName;
             this.username = username;

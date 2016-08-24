@@ -48,8 +48,7 @@ public class CategoryFragment extends Fragment {
         initList();
         mCategoryAdapter = new CategoryAdapter(categories);
         categoryListView.setAdapter(mCategoryAdapter);
-        categoryListView.setItemAnimator(new DefaultItemAnimator());
-        Log.d("count", categoryListView.getChildCount() + "");
+        categoryListView.setItemAnimator(new DefaultItemAnimator());;
 
         super.onViewCreated(view, savedInstanceState);
 

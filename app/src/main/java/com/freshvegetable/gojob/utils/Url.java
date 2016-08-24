@@ -3,7 +3,7 @@ package com.freshvegetable.gojob.utils;
 /**
  * Created by NamVp on 02/08/2016.
  */
-public interface Url {
+public class Url {
 
     /**
      * public static final String BASE_URL = "http://localhost:3000";
@@ -23,7 +23,7 @@ public interface Url {
      */
     public static final String PROFILE_API_URL = "/api/users/me";
     public static final String FIND_USER_URL = "/api/users/find";
-    public static final String GET_USER_DETAIL_URL = "/api/users/details/";
+    public static final String GET_USER_DETAIL_URL = "/api/users/details/"; //+ userID;
     public static final String CHANGE_PROFILE_PICTURE_URL = "/api/users/picture";
 
     public static final String GET_CHAT_LIST_HISTORY_URL = "/api/users/messageHistory";

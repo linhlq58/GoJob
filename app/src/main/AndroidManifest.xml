@@ -19,7 +19,7 @@
         <activity android:name=".activities.SignInActivity" />
         <!--<activity android:name=".activities.MainActivity" />-->
         <activity android:name=".activities.NewPostActivity" />
-        <activity android:name=".activities.CategoryActivity"/>
+        <activity android:name=".activities.CategoryActivity" />
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />

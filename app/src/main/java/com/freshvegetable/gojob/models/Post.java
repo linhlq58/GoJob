@@ -9,28 +9,27 @@ import java.text.SimpleDateFormat;
  * Created by NamVp on 16/08/2016.
  */
 public class Post {
-    private String user;
+    private User.UserHolder user;
     private Long createTime;
     private String title;
     private String content;
-    private String[] imgUrl;
+    private String imgUrl;
 
     private SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm  dd/MM/yyyy");
 
-    public Post(String user, Long createTime, String title, String content, @Nullable String[] imgUrl) {
+    public Post(User.UserHolder user, @Nullable Long createTime, @Nullable String title, String content, @Nullable String imgUrl) {
         this.user = user;
         this.createTime = createTime;
         this.title = title;
         this.content = content;
-        if (imgUrl != null)
-            this.imgUrl = imgUrl;
+        this.imgUrl = imgUrl;
     }
 
-    public String getUser() {
+    public User.UserHolder getUser() {
         return user;
     }
 
-    public void setUser(String user) {
+    public void setUser(User.UserHolder user) {
         this.user = user;
     }
 
@@ -58,11 +57,11 @@ public class Post {
         this.content = content;
     }
 
-    public String[] getImgUrl() {
+    public String getImgUrl() {
         return imgUrl;
     }
 
-    public void setImgUrl(String[] imgUrl) {
+    public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
     }
 }
