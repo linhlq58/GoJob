@@ -57,10 +57,10 @@ public class CategoryFragment extends Fragment {
 
     private void initList() {
         categories = new ArrayList<>();
-        categories.add(new Category("57b95bd0171a74810a11ad40", R.mipmap.web, "Web", 1003));
-        categories.add(new Category("57b95c54171a74810a11ad41", R.mipmap.design, "Design", 1003));
-        categories.add(new Category("57b95c63171a74810a11ad42", R.mipmap.mobile, "Mobile", 1003));
-        categories.add(new Category("57b95c73171a74810a11ad43", R.mipmap.tester, "Tester", 1003));
-        categories.add(new Category("57b95c7a171a74810a11ad44", R.mipmap.data, "Database", 1003));
+        categories.add(new Category("57be5f0154f5a50e0050ca12", R.mipmap.web, "Web", 1003));
+        categories.add(new Category("57be5f2054f5a50e0050ca14", R.mipmap.design, "Design", 1003));
+        categories.add(new Category("57be5f1254f5a50e0050ca13", R.mipmap.mobile, "Mobile", 1003));
+        categories.add(new Category("57be5f2954f5a50e0050ca15", R.mipmap.tester, "Tester", 1003));
+        categories.add(new Category("57be5f3354f5a50e0050ca16", R.mipmap.data, "Database", 1003));
     }
 }

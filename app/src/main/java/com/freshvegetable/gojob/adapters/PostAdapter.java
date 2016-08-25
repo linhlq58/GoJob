@@ -71,7 +71,6 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolderPost
         Log.d("img", post.getImgUrl());
         if (post.getImgUrl().equals("")) holder.imgPost.setVisibility(View.GONE);
         else {
-//        holder.imgPost.setImageDrawable(ContextCompat.getDrawable(mContext, post.getImgUrl()[0]));
             imageLoader.get(Url.BASE_URL + post.getImgUrl().substring(1),
                     ImageLoader.getImageListener(holder.imgPost, R.drawable.mirana, R.mipmap.iv_bg));
         }

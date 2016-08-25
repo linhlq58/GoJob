@@ -8,8 +8,9 @@ public class Url {
     /**
      * public static final String BASE_URL = "http://localhost:3000";
      */
-    public static final String BASE_URL = "http://192.168.100.19:3000"; // company
+//    public static final String BASE_URL = "http://192.168.100.19:3000"; // company
 //    public static final String BASE_URL = "http://192.168.43.254:3000"; // laptop
+    public static final String BASE_URL = "http://gojob.herokuapp.com";
 
     /**
      * Auth API url;

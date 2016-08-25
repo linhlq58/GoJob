@@ -3,19 +3,17 @@ package com.freshvegetable.gojob.fragments;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.util.LruCache;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -30,6 +28,7 @@ import com.freshvegetable.gojob.adapters.PostAdapter;
 import com.freshvegetable.gojob.models.Post;
 import com.freshvegetable.gojob.models.User;
 import com.freshvegetable.gojob.utils.Url;
+import com.freshvegetable.gojob.utils.Utils;
 import com.freshvegetable.gojob.utils.VolleyCallback;
 import com.freshvegetable.gojob.utils.VolleyRequest;
 
@@ -46,14 +45,17 @@ import butterknife.ButterKnife;
  * Created by Nam on 8/15/2016.
  */
 public class NewestFragment extends Fragment {
-    @BindView(R.id.newestPortList)
-    RecyclerView newestPortList;
-    private ArrayList<Post> posts;
+    @BindView(R.id.newestPostList)
+    RecyclerView newestPostList;
+    @BindView(R.id.postListRefresher)
+    SwipeRefreshLayout postListRefresher;
+    private ArrayList<Post> posts = new ArrayList<>();
 
     private RequestQueue mQueue;
     private ImageLoader mImageLoader;
 //    private SimpleDateFormat strToDateFormat = new SimpleDateFormat("yyyy-mm-ddThh:MM:ss.298Z");
 
+    private PostAdapter mPostAdapter;
     private User.UserHolder userHolder;
 
     @Override
@@ -69,17 +71,15 @@ public class NewestFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragmant_newest, container, false);
         ButterKnife.bind(this, rootView);
 
-        mQueue = Volley.newRequestQueue(this.getContext());
-        mImageLoader = new ImageLoader(mQueue, new ImageLoader.ImageCache() {
-            private final LruCache<String, Bitmap> cache = new LruCache<>(20);
+        setUpNetworkConnetion();
+        setupView();
+        mPostAdapter.notifyDataSetChanged();
+        postListRefresher.setColorSchemeResources(R.color.colorPrimary);
+        postListRefresher.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
-            public Bitmap getBitmap(String url) {
-                return cache.get(url);
-            }
-
-            @Override
-            public void putBitmap(String url, Bitmap bitmap) {
-                cache.put(url, bitmap);
+            public void onRefresh() {
+                getPostFromServer();
+                mPostAdapter.notifyDataSetChanged();
             }
         });
 
@@ -89,20 +89,11 @@ public class NewestFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        newestPortList.setHasFixedSize(true);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(view.getContext());
-        newestPortList.setLayoutManager(mLayoutManager);
-
-        getPostFromServer();
-        PostAdapter mPostAdapter = new PostAdapter(this.getContext(), posts, mImageLoader);
-        newestPortList.setItemAnimator(new DefaultItemAnimator());
-        newestPortList.setAdapter(mPostAdapter);
-
         super.onViewCreated(view, savedInstanceState);
     }
 
     private void getPostFromServer() {
-        posts = new ArrayList<>();
+        posts.clear();
         String url = Url.BASE_URL + Url.POST_API_URL;
         JsonArrayRequest postRequest = new JsonArrayRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONArray>() {
@@ -116,19 +107,13 @@ public class NewestFragment extends Fragment {
                                 String id = user.getString(VolleyRequest.ID);
                                 String name = user.getString(VolleyRequest.DISPLAY_NAME);
 
-
-                                String createTime = mJSONObject.getString(VolleyRequest.CREATED);
-//                                long date = strToDateFormat.parse(createTime).getTime();
-
-//                                String title = mJSONObject.getString(VolleyRequest.TITLE);
-
                                 String content = mJSONObject.getString(VolleyRequest.POST_CONTENT);
 
                                 String image = mJSONObject.getString(VolleyRequest.POST_IMAGE_URL);
                                 userHolder = getUserData(id, new VolleyCallback() {
                                     @Override
                                     public void onSuccess(JSONObject response) {
-                                        parceUser(response);
+                                        parseUser(response);
                                     }
                                 });
                                 Post post = new Post(new User.UserHolder(id, name, null, null), null, null, content, image);
@@ -173,7 +158,7 @@ public class NewestFragment extends Fragment {
         return null;
     }
 
-    private User.UserHolder parceUser(JSONObject response) {
+    private User.UserHolder parseUser(JSONObject response) {
         try {
             String id = response.getString(VolleyRequest.ID);
             String displayName = response.getString(VolleyRequest.DISPLAY_NAME);
@@ -185,5 +170,36 @@ public class NewestFragment extends Fragment {
             e.printStackTrace();
         }
         return null;
+    }
+
+    private void setUpNetworkConnetion() {
+        if (Utils.isNetworkConnected(this.getContext())) {
+            mQueue = Volley.newRequestQueue(this.getContext());
+            mImageLoader = new ImageLoader(mQueue, new ImageLoader.ImageCache() {
+                private final LruCache<String, Bitmap> cache = new LruCache<>(20);
+
+                @Override
+                public Bitmap getBitmap(String url) {
+                    return cache.get(url);
+                }
+
+                @Override
+                public void putBitmap(String url, Bitmap bitmap) {
+                    cache.put(url, bitmap);
+                }
+            });
+        } else Toast.makeText(this.getContext(), "No Internet connection", Toast.LENGTH_SHORT);
+    }
+
+    private void setupView() {
+        newestPostList.setHasFixedSize(true);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this.getContext());
+        newestPostList.setLayoutManager(mLayoutManager);
+
+        getPostFromServer();
+        mPostAdapter = new PostAdapter(this.getContext(), posts, mImageLoader);
+        newestPostList.setItemAnimator(new DefaultItemAnimator());
+        newestPostList.setAdapter(mPostAdapter);
+        Log.d("count :", String.valueOf(mPostAdapter.getItemCount()));
     }
 }
