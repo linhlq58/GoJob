@@ -36,7 +36,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -53,10 +58,10 @@ public class NewestFragment extends Fragment {
 
     private RequestQueue mQueue;
     private ImageLoader mImageLoader;
+    private DateFormat mDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.zzz'Z'", Locale.ENGLISH);
 //    private SimpleDateFormat strToDateFormat = new SimpleDateFormat("yyyy-mm-ddThh:MM:ss.298Z");
 
     private PostAdapter mPostAdapter;
-    private User.UserHolder userHolder;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -71,7 +76,8 @@ public class NewestFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragmant_newest, container, false);
         ButterKnife.bind(this, rootView);
 
-        setUpNetworkConnetion();
+        setUpNetworkConnection();
+        mPostAdapter = new PostAdapter(this.getContext(), posts, mImageLoader);
         setupView();
         mPostAdapter.notifyDataSetChanged();
         postListRefresher.setColorSchemeResources(R.color.colorPrimary);
@@ -82,7 +88,6 @@ public class NewestFragment extends Fragment {
                 mPostAdapter.notifyDataSetChanged();
             }
         });
-
 
         return rootView;
     }
@@ -107,22 +112,29 @@ public class NewestFragment extends Fragment {
                                 String id = user.getString(VolleyRequest.ID);
                                 String name = user.getString(VolleyRequest.DISPLAY_NAME);
 
+                                String created = mJSONObject.getString(VolleyRequest.CREATED);
+                                Date mDate = null;
+                                try {
+                                    mDate = mDateFormat.parse(created);
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
+
+                                String title = mJSONObject.getString(VolleyRequest.TITLE);
                                 String content = mJSONObject.getString(VolleyRequest.POST_CONTENT);
 
+
                                 String image = mJSONObject.getString(VolleyRequest.POST_IMAGE_URL);
-                                userHolder = getUserData(id, new VolleyCallback() {
-                                    @Override
-                                    public void onSuccess(JSONObject response) {
-                                        parseUser(response);
-                                    }
-                                });
-                                Post post = new Post(new User.UserHolder(id, name, null, null), null, null, content, image);
+                                Post post = new Post(new User.UserHolder(id, name, null, null),
+                                        mDate == null ? null : mDate.getTime(),
+                                        title, content, image);
                                 posts.add(post);
+
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
-
                         }
+                        mPostAdapter.notifyDataSetChanged();
                     }
                 },
                 new Response.ErrorListener() {
@@ -172,7 +184,7 @@ public class NewestFragment extends Fragment {
         return null;
     }
 
-    private void setUpNetworkConnetion() {
+    private void setUpNetworkConnection() {
         if (Utils.isNetworkConnected(this.getContext())) {
             mQueue = Volley.newRequestQueue(this.getContext());
             mImageLoader = new ImageLoader(mQueue, new ImageLoader.ImageCache() {
@@ -188,7 +200,8 @@ public class NewestFragment extends Fragment {
                     cache.put(url, bitmap);
                 }
             });
-        } else Toast.makeText(this.getContext(), "No Internet connection", Toast.LENGTH_SHORT);
+        } else
+            Toast.makeText(this.getContext(), "No Internet connection", Toast.LENGTH_SHORT).show();
     }
 
     private void setupView() {
@@ -197,9 +210,7 @@ public class NewestFragment extends Fragment {
         newestPostList.setLayoutManager(mLayoutManager);
 
         getPostFromServer();
-        mPostAdapter = new PostAdapter(this.getContext(), posts, mImageLoader);
         newestPostList.setItemAnimator(new DefaultItemAnimator());
         newestPostList.setAdapter(mPostAdapter);
-        Log.d("count :", String.valueOf(mPostAdapter.getItemCount()));
     }
 }

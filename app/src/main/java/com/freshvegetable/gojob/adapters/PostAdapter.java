@@ -24,8 +24,8 @@ import butterknife.ButterKnife;
  * Created by NamVp on 17/08/2016.
  */
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolderPost> {
-    private Context mContext;
     private final int layoutId = R.layout.item_list_post;
+    private Context mContext;
     private ArrayList<Post> posts;
     private ImageLoader imageLoader;
 
@@ -36,9 +36,36 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolderPost
         this.imageLoader = imageLoader;
     }
 
-    public static class ViewHolderPost extends RecyclerView.ViewHolder {
-        private Context mContext;
+    @Override
+    public ViewHolderPost onCreateViewHolder(ViewGroup parent, int viewType) {
+        View itemView = LayoutInflater.from(mContext).inflate(layoutId, parent, false);
+        return new ViewHolderPost(itemView);
+    }
 
+    @Override
+    public void onBindViewHolder(ViewHolderPost holder, int position) {
+        Post post = posts.get(position);
+        holder.tvUsername.setText(post.getUser().getDisplayName());
+//        holder.tvCreateTime.setText();
+        holder.tvPostTitle.setText(post.getTitle());
+        holder.tvPostContent.setText(post.getContent());
+        Log.d("img", post.getImgUrl());
+        if (post.getImgUrl().equals("")) holder.imgPost.setVisibility(View.GONE);
+        else {
+            imageLoader.get(Url.BASE_URL + post.getImgUrl().substring(1),
+                    ImageLoader.getImageListener(holder.imgPost, R.drawable.mirana, R.mipmap.iv_bg));
+        }
+        if (position == posts.size() - 1) holder.divider.setVisibility(View.GONE);
+    }
+
+    @Override
+    public int getItemCount() {
+        return posts.size();
+    }
+
+    public static class ViewHolderPost extends RecyclerView.ViewHolder {
+        @BindView(R.id.tvPostTitle)
+        TextView tvPostTitle;
         @BindView(R.id.userName)
         TextView tvUsername;
         @BindView(R.id.tvCreateTime)
@@ -54,31 +81,5 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolderPost
             super(view);
             ButterKnife.bind(this, view);
         }
-    }
-
-    @Override
-    public ViewHolderPost onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(mContext).inflate(R.layout.item_list_post, parent, false);
-        return new ViewHolderPost(itemView);
-    }
-
-    @Override
-    public void onBindViewHolder(ViewHolderPost holder, int position) {
-        Post post = posts.get(position);
-        holder.tvUsername.setText(post.getUser().getDisplayName());
-//        holder.tvCreateTime.setText();
-        holder.tvPostContent.setText(post.getContent());
-        Log.d("img", post.getImgUrl());
-        if (post.getImgUrl().equals("")) holder.imgPost.setVisibility(View.GONE);
-        else {
-            imageLoader.get(Url.BASE_URL + post.getImgUrl().substring(1),
-                    ImageLoader.getImageListener(holder.imgPost, R.drawable.mirana, R.mipmap.iv_bg));
-        }
-        if (position == posts.size() - 1) holder.divider.setVisibility(View.GONE);
-    }
-
-    @Override
-    public int getItemCount() {
-        return posts.size();
     }
 }

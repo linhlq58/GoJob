@@ -6,7 +6,6 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,7 +47,7 @@ public class CategoryFragment extends Fragment {
         initList();
         mCategoryAdapter = new CategoryAdapter(categories);
         categoryListView.setAdapter(mCategoryAdapter);
-        categoryListView.setItemAnimator(new DefaultItemAnimator());;
+        categoryListView.setItemAnimator(new DefaultItemAnimator());
 
         super.onViewCreated(view, savedInstanceState);
 
