@@ -86,6 +86,7 @@ public class NewestFragment extends Fragment {
             public void onRefresh() {
                 getPostFromServer();
                 mPostAdapter.notifyDataSetChanged();
+                postListRefresher.setRefreshing(false);
             }
         });
 
