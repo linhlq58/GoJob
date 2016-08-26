@@ -13,7 +13,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -78,18 +77,20 @@ public class NewestFragment extends Fragment {
 
         setUpNetworkConnection();
         mPostAdapter = new PostAdapter(this.getContext(), posts, mImageLoader);
-        setupView();
-        mPostAdapter.notifyDataSetChanged();
-        postListRefresher.setColorSchemeResources(R.color.colorPrimary);
-        postListRefresher.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                getPostFromServer();
-                mPostAdapter.notifyDataSetChanged();
-                postListRefresher.setRefreshing(false);
-            }
-        });
+        if (Utils.isNetworkConnected(this.getContext())) {
+            setupView();
+            mPostAdapter.notifyDataSetChanged();
+            postListRefresher.setColorSchemeResources(R.color.colorPrimary);
+            postListRefresher.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                @Override
+                public void onRefresh() {
+                    getPostFromServer();
+                    mPostAdapter.notifyDataSetChanged();
+                    postListRefresher.setRefreshing(false);
+                }
+            });
 
+        }
         return rootView;
     }
 
@@ -186,23 +187,20 @@ public class NewestFragment extends Fragment {
     }
 
     private void setUpNetworkConnection() {
-        if (Utils.isNetworkConnected(this.getContext())) {
-            mQueue = Volley.newRequestQueue(this.getContext());
-            mImageLoader = new ImageLoader(mQueue, new ImageLoader.ImageCache() {
-                private final LruCache<String, Bitmap> cache = new LruCache<>(20);
+        mQueue = Volley.newRequestQueue(this.getContext());
+        mImageLoader = new ImageLoader(mQueue, new ImageLoader.ImageCache() {
+            private final LruCache<String, Bitmap> cache = new LruCache<>(20);
 
-                @Override
-                public Bitmap getBitmap(String url) {
-                    return cache.get(url);
-                }
+            @Override
+            public Bitmap getBitmap(String url) {
+                return cache.get(url);
+            }
 
-                @Override
-                public void putBitmap(String url, Bitmap bitmap) {
-                    cache.put(url, bitmap);
-                }
-            });
-        } else
-            Toast.makeText(this.getContext(), "No Internet connection", Toast.LENGTH_SHORT).show();
+            @Override
+            public void putBitmap(String url, Bitmap bitmap) {
+                cache.put(url, bitmap);
+            }
+        });
     }
 
     private void setupView() {
