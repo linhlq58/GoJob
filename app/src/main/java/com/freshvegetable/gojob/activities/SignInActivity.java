@@ -5,11 +5,13 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -24,6 +26,8 @@ import com.loopj.android.http.AsyncHttpClient;
 
 import org.json.JSONObject;
 
+import java.net.CookieHandler;
+import java.net.CookieManager;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -48,6 +52,7 @@ public class SignInActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        CookieHandler.setDefault(new CookieManager());
         setContentView(R.layout.activity_sign_in);
         ButterKnife.bind(this);
 
@@ -71,10 +76,10 @@ public class SignInActivity extends AppCompatActivity {
 
                         String url = Url.BASE_URL + Url.SIGN_IN_API_URL;
                         Map<String, String> mParam = new HashMap<>();
-//                    mParam.put(VolleyRequest.USERNAME, etSignInUsername.getText().toString());
-//                    mParam.put(VolleyRequest.PASSWORD, etSignInPassword.getText().toString());
-                        mParam.put(VolleyRequest.USERNAME, "blahblahblah");
-                        mParam.put(VolleyRequest.PASSWORD, "Blah_123blah");
+                        mParam.put(VolleyRequest.USERNAME, etSignInUsername.getText().toString());
+                        mParam.put(VolleyRequest.PASSWORD, etSignInPassword.getText().toString());
+//                        mParam.put(VolleyRequest.USERNAME, "blahblahblah");
+//                        mParam.put(VolleyRequest.PASSWORD, "Blah_123blah");
                         Log.d("username", etSignInUsername.getText().toString());
                         Log.d("password", etSignInPassword.getText().toString());
 
@@ -96,7 +101,16 @@ public class SignInActivity extends AppCompatActivity {
                                         Log.e("Error:", error.toString());
                                     }
                                 }
-                        );
+                        ) {
+                            @Override
+                            public Map<String, String> getHeaders() throws AuthFailureError {
+                                HashMap<String, String> headers = new HashMap<>();
+                                String creds = String.format("%s:%s", "USERNAME", "PASSWORD ");
+                                String auth = "Basic " + Base64.encodeToString(creds.getBytes(), Base64.DEFAULT);
+                                headers.put("Authorization", auth);
+                                return headers;
+                            }
+                        };
                         mQueue.add(loginRequest);
                     }
                 }

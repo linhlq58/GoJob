@@ -40,6 +40,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
 
 import butterknife.BindView;
@@ -102,6 +103,25 @@ public class NewestFragment extends Fragment {
     private void getPostFromServer() {
         posts.clear();
         String url = Url.BASE_URL + Url.POST_API_URL;
+
+        HashMap<String, String> post = new HashMap<>();
+        post.put(VolleyRequest.TITLE, "test");
+        post.put(VolleyRequest.POST_CONTENT, "test");
+        JsonObjectRequest newPostRequest = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(post),
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                }
+        );
+        mQueue.add(newPostRequest);
         JsonArrayRequest postRequest = new JsonArrayRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONArray>() {
                     @Override
@@ -144,8 +164,11 @@ public class NewestFragment extends Fragment {
                     public void onErrorResponse(VolleyError error) {
                         Log.e("Error:", error.toString());
                     }
-                });
+                }
+        );
         mQueue.add(postRequest);
+
+
     }
 
     private User.UserHolder getUserData(final String id, final VolleyCallback callback) {
