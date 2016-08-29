@@ -88,8 +88,8 @@ public class MainActivity extends AppCompatActivity {
     public void onClick() {
 //        TODO to add new post activity
 //        Snackbar.make(drawerLayout, "New post", Snackbar.LENGTH_SHORT).show();
-        //Intent intent = new Intent(MainActivity.this, NewPostActivity.class);
-        Intent intent = new Intent(MainActivity.this, SignInActivity.class);
+        Intent intent = new Intent(MainActivity.this, NewPostActivity.class);
+        //Intent intent = new Intent(MainActivity.this, SignInActivity.class);
         startActivity(intent);
     }
 
