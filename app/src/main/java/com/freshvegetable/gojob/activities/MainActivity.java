@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.freshvegetable.gojob.R;
 import com.freshvegetable.gojob.adapters.CategoryAdapter;
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
     private CategoryAdapter mCategoryAdapter;
     private SlidingPagerAdapter mPagerAdapter;
+    private View header;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +65,16 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+        header = navView.getHeaderView(0);
+        header.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
 

@@ -121,7 +121,7 @@ public class NewestFragment extends Fragment {
                     }
                 }
         );
-        mQueue.add(newPostRequest);
+//        mQueue.add(newPostRequest);
         JsonArrayRequest postRequest = new JsonArrayRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONArray>() {
                     @Override
