@@ -17,4 +17,5 @@
     <color name="textSecondaryDark">#8a000000</color>
     
     <color name="backgrounDrawer">#424242</color>
+    <color name="transparentWhite">#33FFFFFF</color>
 </resources>
