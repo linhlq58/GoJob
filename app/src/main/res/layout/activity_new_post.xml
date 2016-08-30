@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
@@ -41,6 +42,7 @@
                 android:textColor="@android:color/black" />
 
             <EditText
+                android:id="@+id/etTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
@@ -100,7 +102,8 @@
             <ImageView
                 android:id="@+id/postPhoto"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="300dp"
+                android:scaleType="fitCenter"
                 android:visibility="gone" />
 
             <LinearLayout
@@ -133,7 +136,7 @@
                     android:textColor="@android:color/black" />
 
                 <Button
-                    android:id="@+id/btnGetCamera"
+                    android:id="@+id/btnTakePhoto"
                     style="@style/Base.Widget.AppCompat.Button.Borderless"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
