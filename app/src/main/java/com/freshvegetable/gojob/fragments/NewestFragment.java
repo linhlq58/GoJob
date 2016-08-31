@@ -151,44 +151,6 @@ public class NewestFragment extends Fragment {
 
     }
 
-//    private User.UserHolder getUserData(final String id, final VolleyCallback callback) {
-//        String url = Url.BASE_URL + Url.GET_USER_DETAIL_URL + id;
-//
-//        JsonObjectRequest userRequest = new JsonObjectRequest(Request.Method.GET, url,
-//                new JSONObject(),
-//                new Response.Listener<JSONObject>() {
-//                    User.UserHolder userHolder;
-//
-//                    @Override
-//                    public void onResponse(JSONObject response) {
-//                        callback.onSuccess(response);
-//                    }
-//                },
-//                new Response.ErrorListener() {
-//                    @Override
-//                    public void onErrorResponse(VolleyError error) {
-//                        Log.e("Error:", error.toString());
-//                    }
-//                }
-//        );
-//        mQueue.add(userRequest);
-//        return null;
-//    }
-//
-//    private User.UserHolder parseUser(JSONObject response) {
-//        try {
-//            String id = response.getString(VolleyRequest.ID);
-//            String displayName = response.getString(VolleyRequest.DISPLAY_NAME);
-//            String username = response.getString(VolleyRequest.USERNAME);
-//            String profileImage = response.getString(VolleyRequest.PROFILE_IMAGE_URL);
-//            return new User.UserHolder(id, displayName, username, profileImage);
-//
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
-//        return null;
-//    }
-
     private void setUpNetworkConnection() {
         mQueue = Volley.newRequestQueue(this.getContext());
         mImageLoader = new ImageLoader(mQueue, new ImageLoader.ImageCache() {
