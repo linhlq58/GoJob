@@ -26,6 +26,16 @@ public class User {
 
     public static class UserHolder{
         public String id;
+        public String displayName;
+        public String username;
+        public String profileUrl;
+
+        public UserHolder(String id, String displayName, @Nullable String username, @Nullable String profileUrl) {
+            this.id = id;
+            this.displayName = displayName;
+            this.username = username;
+            this.profileUrl = profileUrl;
+        }
 
         public String getId() {
             return id;
@@ -56,24 +66,6 @@ public class User {
         }
 
         public void setProfileUrl(String profileUrl) {
-            this.profileUrl = profileUrl;
-        }
-
-        public String displayName;
-        public String username;
-        public String profileUrl;
-
-        public UserHolder(User user) {
-            this.id = user.id;
-            this.displayName = user.displayName;
-            this.username = user.userName;
-            this.profileUrl = user.profileImageUrl;
-        }
-
-        public UserHolder(String id, String displayName, @Nullable String username, @Nullable String profileUrl) {
-            this.id = id;
-            this.displayName = displayName;
-            this.username = username;
             this.profileUrl = profileUrl;
         }
     }

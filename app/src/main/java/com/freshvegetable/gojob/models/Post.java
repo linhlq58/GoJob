@@ -4,9 +4,11 @@ package com.freshvegetable.gojob.models;
 import android.support.annotation.Nullable;
 
 import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 /**
  * Created by NamVp on 16/08/2016.
+ *
  */
 public class Post {
     private User.UserHolder user;
@@ -15,7 +17,7 @@ public class Post {
     private String content;
     private String imgUrl;
 
-    private SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm  dd/MM/yyyy");
+    private SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm  dd/MM/yyyy", Locale.ENGLISH);
 
     public Post(User.UserHolder user, @Nullable Long createTime, @Nullable String title, String content, @Nullable String imgUrl) {
         this.user = user;

@@ -2,6 +2,7 @@ package com.freshvegetable.gojob.utils;
 
 /**
  * Created by NamVp on 02/08/2016.
+ *
  */
 public class Url {
 

@@ -8,6 +8,7 @@ import com.freshvegetable.gojob.R;
 
 /**
  * Created by Linh Lee on 8/29/2016.
+ *
  */
 public class ProfileActivity extends AppCompatActivity {
 

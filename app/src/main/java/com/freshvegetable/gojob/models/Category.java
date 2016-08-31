@@ -2,13 +2,9 @@ package com.freshvegetable.gojob.models;
 
 /**
  * Created by NamVp on 16/08/2016.
+ *
  */
 public class Category {
-    private String _id;
-    private int categoryImage;
-    private String categoryTitle;
-    private int postCount;
-
     public static String[] Id = {
             "57be5f0154f5a50e0050ca12",
             "57be5f0154f5a50e0050ca14",
@@ -16,6 +12,10 @@ public class Category {
             "57be5f0154f5a50e0050ca15",
             "57be5f0154f5a50e0050ca16",
     };
+    private String _id;
+    private int categoryImage;
+    private String categoryTitle;
+    private int postCount;
 
     public Category(String id, int categoryImage, String categoryTitle, int postCount) {
         this._id = id;

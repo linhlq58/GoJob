@@ -2,7 +2,8 @@ package com.freshvegetable.gojob.utils;
 
 /**
  * Created by NamVp on 19/08/2016.
- * Using on sending request to
+ * Using on sending request to server
+ * and parsing data from server
  */
 public class VolleyRequest {
 

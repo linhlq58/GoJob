@@ -16,6 +16,7 @@ import butterknife.ButterKnife;
 
 /**
  * Created by NamVp on 26/08/2016.
+ *
  */
 
 public class CameraActivity extends Activity {

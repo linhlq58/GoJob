@@ -24,10 +24,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * Created by Nam on 8/10/2016.
+ * Created by NamVp on 8/10/2016.
+ *
  */
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHolderCategory> {
-    private final int layoutId = R.layout.item_list_category;
     private ArrayList<Category> categories;
     private int[] backgrounds = {
             Color.parseColor("#f6b398"),
@@ -43,6 +43,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
 
     @Override
     public ViewHolderCategory onCreateViewHolder(ViewGroup parent, int viewType) {
+        final int layoutId = R.layout.item_list_category;
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(layoutId, parent, false);
         return new ViewHolderCategory(itemView);
@@ -53,7 +54,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         final Category category = categories.get(position);
         holder.categoryIcon.setImageDrawable(ContextCompat.getDrawable(holder.mContext, category.getCategoryImage()));
         holder.categoryTitle.setText(category.getCategoryTitle());
-        holder.postCount.setText(String.valueOf(category.getPostCount()) + " posts");
+        String postCount = String.valueOf(category.getPostCount() + " posts");
+        holder.postCount.setText(postCount);
         holder.container.setBackgroundColor(backgrounds[position]);
         holder.container.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 
 /**
  * Created by Nam on 8/15/2016.
+ *
  */
 public class EndingSoonFragment extends Fragment {
 

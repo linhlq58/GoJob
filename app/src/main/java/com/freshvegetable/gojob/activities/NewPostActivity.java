@@ -18,7 +18,6 @@ import android.util.Base64;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
@@ -32,18 +31,12 @@ import com.freshvegetable.gojob.R;
 import com.freshvegetable.gojob.models.Category;
 import com.freshvegetable.gojob.utils.Url;
 import com.freshvegetable.gojob.utils.VolleyRequest;
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.gson.JsonObject;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -53,34 +46,24 @@ import butterknife.OnClick;
 
 /**
  * Created by NamVp on 18/08/2016.
+ *
  */
 public class NewPostActivity extends AppCompatActivity {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @BindView(R.id.btnGetPhoto)
-    Button btnGetPhoto;
-    @BindView(R.id.btnPost)
-    Button btnPost;
     @BindView(R.id.spnCategory)
     AppCompatSpinner spnCategory;
     @BindView(R.id.etContent)
     EditText etContent;
     @BindView(R.id.postPhoto)
     ImageView postPhoto;
-    @BindView(R.id.btnTakePhoto)
-    Button btnTakePhoto;
     @BindView(R.id.etTitle)
     EditText etTitle;
     @BindView(R.id.container)
     CoordinatorLayout container;
 
     private RequestQueue mQueue;
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    private GoogleApiClient client;
 
 
     @Override
@@ -96,23 +79,20 @@ public class NewPostActivity extends AppCompatActivity {
         getSupportActionBar().show();
 
         mQueue = Volley.newRequestQueue(NewPostActivity.this);
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        switch(requestCode) {
+        switch (requestCode) {
             case 100:
-                if(resultCode == RESULT_OK){
+                if (resultCode == RESULT_OK) {
                     Uri selectedImage = data.getData();
                     String[] filePathColumn = {MediaStore.Images.Media.DATA};
 
                     Cursor cursor = getContentResolver().query(
                             selectedImage, filePathColumn, null, null, null);
-                    cursor.moveToFirst();
+                    if (cursor != null) cursor.moveToFirst();
 
                     int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
                     String filePath = cursor.getString(columnIndex);
@@ -136,7 +116,7 @@ public class NewPostActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public byte[] extractBytes (Bitmap bitmap) throws IOException {
+    public byte[] extractBytes(Bitmap bitmap) throws IOException {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
         return stream.toByteArray();
@@ -194,7 +174,7 @@ public class NewPostActivity extends AppCompatActivity {
                 if (postPhoto.getDrawable() != null) {
                     Bitmap img = ((BitmapDrawable) postPhoto.getDrawable()).getBitmap();
                     try {
-                        byte[] imgByteArray  = extractBytes(img);
+                        byte[] imgByteArray = extractBytes(img);
                         String base64Image = Base64.encodeToString(imgByteArray, Base64.NO_WRAP);
                         postJSON.put("newPostPicture", base64Image);
                     } catch (IOException e) {

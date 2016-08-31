@@ -20,7 +20,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.freshvegetable.gojob.R;
 import com.freshvegetable.gojob.adapters.PostAdapter;
@@ -28,7 +27,6 @@ import com.freshvegetable.gojob.models.Post;
 import com.freshvegetable.gojob.models.User;
 import com.freshvegetable.gojob.utils.Url;
 import com.freshvegetable.gojob.utils.Utils;
-import com.freshvegetable.gojob.utils.VolleyCallback;
 import com.freshvegetable.gojob.utils.VolleyRequest;
 
 import org.json.JSONArray;
@@ -40,7 +38,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Locale;
 
 import butterknife.BindView;
@@ -48,6 +45,7 @@ import butterknife.ButterKnife;
 
 /**
  * Created by Nam on 8/15/2016.
+ *
  */
 public class NewestFragment extends Fragment {
     @BindView(R.id.newestPostList)
@@ -104,24 +102,6 @@ public class NewestFragment extends Fragment {
         posts.clear();
         String url = Url.BASE_URL + Url.POST_API_URL;
 
-        HashMap<String, String> post = new HashMap<>();
-        post.put(VolleyRequest.TITLE, "test");
-        post.put(VolleyRequest.POST_CONTENT, "test");
-        JsonObjectRequest newPostRequest = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(post),
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-
-                    }
-                }
-        );
-//        mQueue.add(newPostRequest);
         JsonArrayRequest postRequest = new JsonArrayRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONArray>() {
                     @Override
@@ -171,43 +151,43 @@ public class NewestFragment extends Fragment {
 
     }
 
-    private User.UserHolder getUserData(final String id, final VolleyCallback callback) {
-        String url = Url.BASE_URL + Url.GET_USER_DETAIL_URL + id;
-
-        JsonObjectRequest userRequest = new JsonObjectRequest(Request.Method.GET, url,
-                new JSONObject(),
-                new Response.Listener<JSONObject>() {
-                    User.UserHolder userHolder;
-
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        callback.onSuccess(response);
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.e("Error:", error.toString());
-                    }
-                }
-        );
-        mQueue.add(userRequest);
-        return null;
-    }
-
-    private User.UserHolder parseUser(JSONObject response) {
-        try {
-            String id = response.getString(VolleyRequest.ID);
-            String displayName = response.getString(VolleyRequest.DISPLAY_NAME);
-            String username = response.getString(VolleyRequest.USERNAME);
-            String profileImage = response.getString(VolleyRequest.PROFILE_IMAGE_URL);
-            return new User.UserHolder(id, displayName, username, profileImage);
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
+//    private User.UserHolder getUserData(final String id, final VolleyCallback callback) {
+//        String url = Url.BASE_URL + Url.GET_USER_DETAIL_URL + id;
+//
+//        JsonObjectRequest userRequest = new JsonObjectRequest(Request.Method.GET, url,
+//                new JSONObject(),
+//                new Response.Listener<JSONObject>() {
+//                    User.UserHolder userHolder;
+//
+//                    @Override
+//                    public void onResponse(JSONObject response) {
+//                        callback.onSuccess(response);
+//                    }
+//                },
+//                new Response.ErrorListener() {
+//                    @Override
+//                    public void onErrorResponse(VolleyError error) {
+//                        Log.e("Error:", error.toString());
+//                    }
+//                }
+//        );
+//        mQueue.add(userRequest);
+//        return null;
+//    }
+//
+//    private User.UserHolder parseUser(JSONObject response) {
+//        try {
+//            String id = response.getString(VolleyRequest.ID);
+//            String displayName = response.getString(VolleyRequest.DISPLAY_NAME);
+//            String username = response.getString(VolleyRequest.USERNAME);
+//            String profileImage = response.getString(VolleyRequest.PROFILE_IMAGE_URL);
+//            return new User.UserHolder(id, displayName, username, profileImage);
+//
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//        return null;
+//    }
 
     private void setUpNetworkConnection() {
         mQueue = Volley.newRequestQueue(this.getContext());

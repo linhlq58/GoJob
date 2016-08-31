@@ -21,13 +21,13 @@ import butterknife.ButterKnife;
 
 /**
  * Created by Nam on 8/15/2016.
+ *
  */
 public class CategoryFragment extends Fragment {
 
     @BindView(R.id.categoryListView)
     RecyclerView categoryListView;
 
-    private CategoryAdapter mCategoryAdapter;
     private ArrayList<Category> categories;
 
     @Nullable
@@ -45,7 +45,7 @@ public class CategoryFragment extends Fragment {
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(view.getContext());
         categoryListView.setLayoutManager(mLayoutManager);
         initList();
-        mCategoryAdapter = new CategoryAdapter(categories);
+        CategoryAdapter mCategoryAdapter = new CategoryAdapter(categories);
         categoryListView.setAdapter(mCategoryAdapter);
         categoryListView.setItemAnimator(new DefaultItemAnimator());
 

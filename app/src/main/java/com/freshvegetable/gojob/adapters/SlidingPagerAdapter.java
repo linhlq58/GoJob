@@ -10,8 +10,15 @@ import com.freshvegetable.gojob.fragments.NewestFragment;
 
 /**
  * Created by Nam on 8/15/2016.
+ *
  */
 public class SlidingPagerAdapter extends FragmentPagerAdapter {
+
+    private String[] titles = {
+            "CATEGORY",
+            "NEWEST",
+            "ENDING SOON",
+    };
 
     public SlidingPagerAdapter(FragmentManager fm) {
         super(fm);
@@ -29,12 +36,6 @@ public class SlidingPagerAdapter extends FragmentPagerAdapter {
         }
         return new Fragment();
     }
-
-    private String[] titles = {
-            "CATEGORY",
-            "NEWEST",
-            "ENDING SOON",
-    };
 
     @Override
     public int getCount() {

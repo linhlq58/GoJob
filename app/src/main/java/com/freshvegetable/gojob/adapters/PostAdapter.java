@@ -22,9 +22,9 @@ import butterknife.ButterKnife;
 
 /**
  * Created by NamVp on 17/08/2016.
+ *
  */
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolderPost> {
-    private final int layoutId = R.layout.item_list_post;
     private Context mContext;
     private ArrayList<Post> posts;
     private ImageLoader imageLoader;
@@ -38,6 +38,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolderPost
 
     @Override
     public ViewHolderPost onCreateViewHolder(ViewGroup parent, int viewType) {
+        final int layoutId = R.layout.item_list_post;
         View itemView = LayoutInflater.from(mContext).inflate(layoutId, parent, false);
         return new ViewHolderPost(itemView);
     }
@@ -46,7 +47,6 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolderPost
     public void onBindViewHolder(ViewHolderPost holder, int position) {
         Post post = posts.get(position);
         holder.tvUsername.setText(post.getUser().getDisplayName());
-//        holder.tvCreateTime.setText();
         holder.tvPostTitle.setText(post.getTitle());
         holder.tvPostContent.setText(post.getContent());
         Log.d("img", post.getImgUrl());

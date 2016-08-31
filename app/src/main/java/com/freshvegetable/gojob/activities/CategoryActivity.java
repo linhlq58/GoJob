@@ -3,7 +3,6 @@ package com.freshvegetable.gojob.activities;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
@@ -27,6 +26,7 @@ import butterknife.ButterKnife;
 
 /**
  * Created by namvp58uet on 21/08/2016.
+ *
  */
 public class CategoryActivity extends AppCompatActivity {
 
@@ -34,9 +34,6 @@ public class CategoryActivity extends AppCompatActivity {
     Toolbar toolbar;
 //    @BindView(R.id.postList)
 //    RecyclerView postList;
-
-    private String id;
-    private String title;
 
     private RequestQueue mQueue;
 
@@ -46,8 +43,8 @@ public class CategoryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_category);
         ButterKnife.bind(this);
 
-        id = getIntent().getStringExtra(VolleyRequest.ID);
-        title = getIntent().getStringExtra(VolleyRequest.TITLE);
+        String id = getIntent().getStringExtra(VolleyRequest.ID);
+        String title = getIntent().getStringExtra(VolleyRequest.TITLE);
 
         mQueue = Volley.newRequestQueue(this);
         String url = Url.BASE_URL + Url.GET_POST_BY_CATEGORY_URL + id;
