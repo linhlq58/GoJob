@@ -9,7 +9,7 @@
         android:id="@+id/iv_profile"
         android:layout_width="64dp"
         android:layout_height="64dp"
-        android:layout_marginLeft="30dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="20dp"
         android:scaleType="fitCenter" />
 
@@ -17,8 +17,7 @@
         android:id="@+id/txt_name_profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/iv_profile"
-        android:layout_marginLeft="30dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="10dp"
         android:text="Ngọc Lê"
         android:textColor="@android:color/white"
@@ -29,8 +28,7 @@
         android:id="@+id/txt_gmail_profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/txt_name_profile"
-        android:layout_marginLeft="30dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="10dp"
         android:text="lethanhngoc672@gmail.com"
         android:textColor="@android:color/white"

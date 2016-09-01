@@ -19,10 +19,12 @@
             android:layout_height="wrap_content">
 
             <ImageView
+                android:contentDescription="@null"
+                android:labelFor="@+id/etSignInUsername"
                 android:id="@+id/imgUser"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
-                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
                 android:layout_centerInParent="true"
                 android:layout_margin="8dp"
                 android:src="@mipmap/user" />
@@ -32,8 +34,8 @@
                 android:id="@+id/etSignInUsername"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:layout_toRightOf="@+id/imgUser"
-                android:hint="Username"
+                android:layout_toEndOf="@+id/imgUser"
+                android:hint="@string/username"
                 android:inputType="text|textNoSuggestions"
                 android:textColorHint="#26000000" />
         </RelativeLayout>
@@ -44,10 +46,12 @@
             android:layout_marginTop="16dp">
 
             <ImageView
+                android:contentDescription="@null"
+                android:labelFor="@+id/etSignInPassword"
                 android:id="@+id/imgPassword"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
-                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
                 android:layout_centerInParent="true"
                 android:layout_margin="8dp"
                 android:src="@mipmap/password" />
@@ -57,8 +61,8 @@
                 android:id="@+id/etSignInPassword"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:layout_toRightOf="@+id/imgPassword"
-                android:hint="Password"
+                android:layout_toEndOf="@+id/imgPassword"
+                android:hint="@string/password"
                 android:inputType="textPassword"
                 android:textColorHint="#26000000" />
 
@@ -72,7 +76,7 @@
             android:layout_marginBottom="16dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/bg_btn_sign_in"
-            android:text="Sign In"
+            android:text="@string/sign_in"
             android:textAllCaps="false"
             android:textColor="@color/textColorSecondary" />
 
@@ -83,7 +87,7 @@
             android:layout_height="40dp"
             android:layout_marginBottom="8dp"
             android:background="@drawable/bg_btn_sign_up"
-            android:text="Sign Up"
+            android:text="@string/sign_up"
             android:textAllCaps="false"
             android:textColor="@color/colorPrimary"
 
@@ -102,13 +106,14 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
                 android:gravity="center"
-                android:text="Forget password?"
+                android:text="@string/forget_password"
                 android:textColor="@color/colorPrimary" />
 
             <ImageView
+                android:contentDescription="@null"
                 android:layout_width="16dp"
                 android:layout_height="16dp"
-                android:layout_marginLeft="4dp"
+                android:layout_marginStart="4dp"
                 android:scaleType="fitCenter"
                 android:src="@mipmap/help" />
         </LinearLayout>
@@ -128,6 +133,7 @@
             android:orientation="horizontal">
 
             <ImageButton
+                android:contentDescription="@string/facebook_login_button"
                 android:id="@+id/btnFacebook"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
@@ -140,6 +146,7 @@
                 android:src="@mipmap/facebook" />
 
             <ImageButton
+                android:contentDescription="@string/google_plus_button"
                 android:id="@+id/btnGooglePlus"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
@@ -159,6 +166,6 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="8dp"
         android:gravity="center"
-        android:text="Go Job 2016 by FRESH VEGETABLE team"
+        android:text="@string/fresh_vegetable"
         android:textColor="@color/colorPrimary" />
 </RelativeLayout>

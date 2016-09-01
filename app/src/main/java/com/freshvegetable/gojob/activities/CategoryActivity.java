@@ -25,7 +25,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * Created by namvp58uet on 21/08/2016.
+ * Created by NamVp aka meo3the on 21/08/2016.
  *
  */
 public class CategoryActivity extends AppCompatActivity {
@@ -72,9 +72,11 @@ public class CategoryActivity extends AppCompatActivity {
         );
         mQueue.add(getPostRequest);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setTitle(title);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setHomeButtonEnabled(true);
+            getSupportActionBar().setTitle(title);
+        }
     }
 
     @Override

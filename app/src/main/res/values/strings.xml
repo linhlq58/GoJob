@@ -4,4 +4,31 @@
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="title">Title</string>
+    <string name="category">Category</string>
+    <string name="content">Content</string>
+    <string name="post_photo">Post photo</string>
+    <string name="choose_photo">Choose Photo</string>
+    <string name="or">or</string>
+    <string name="take_photo">Take Photo</string>
+    <string name="post">Post</string>
+    <string name="contact_icon">Contact icon</string>
+    <string name="contact">Contact</string>
+    <string name="setting_icon">Setting icon</string>
+    <string name="settings">Settings</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="sign_in">Sign In</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="google_plus_button">Login with google plus button</string>
+    <string name="facebook_login_button">Login with Facebook button</string>
+    <string name="forget_password">Forget password</string>
+    <string name="basic_information">Basic Information</string>
+    <string name="private_information">Private Information</string>
+    <string name="already_have_a_account">Already have account?</string>
+    <string name="fresh_vegetable">Go Job 2016 by FRESH VEGETABLE team</string>
+    <string name="time">12 gio truoc</string>
+    <string name="follow">follow</string>
+    <string name="comment">comment</string>
+    <string name="save">save</string>
 </resources>

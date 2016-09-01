@@ -12,6 +12,8 @@ import com.freshvegetable.gojob.fragments.NewestFragment;
  * Created by Nam on 8/15/2016.
  *
  */
+
+
 public class SlidingPagerAdapter extends FragmentPagerAdapter {
 
     private String[] titles = {

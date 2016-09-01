@@ -36,15 +36,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:paddingRight="16dp"
-                android:text="Title"
+                android:labelFor="@+id/etTitle"
+                android:text="@string/title"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@android:color/black" />
 
             <EditText
                 android:id="@+id/etTitle"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:inputType="text" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -55,22 +56,20 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:layout_marginEnd="16dp"
                     android:gravity="center"
-                    android:paddingRight="16dp"
-                    android:text="Category"
+                    android:text="@string/category"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="@android:color/black" />
 
-                <android.support.v7.widget.AppCompatSpinner
+                <Spinner
                     android:id="@+id/spnCategory"
                     style="@style/Base.Widget.AppCompat.DropDownItem.Spinner"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
                     android:layout_marginTop="8dp"
-                    android:entries="@array/category">
-
-                </android.support.v7.widget.AppCompatSpinner>
+                    android:entries="@array/categories" />
 
             </LinearLayout>
 
@@ -81,28 +80,26 @@
                 android:layout_marginBottom="8dp"
                 android:layout_marginTop="8dp"
                 android:gravity="center"
-                android:paddingRight="16dp"
-                android:text="Content"
+                android:labelFor="@+id/etContent"
+                android:text="@string/content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@android:color/black" />
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
 
-                <EditText
-                    android:id="@+id/etContent"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:imeOptions="actionDone"
-                    android:inputType="text"
-                    android:minHeight="172dp" />
-            </android.support.design.widget.TextInputLayout>
+            <EditText
+                android:id="@+id/etContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:minHeight="172dp" />
 
             <ImageView
                 android:id="@+id/postPhoto"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
+                android:contentDescription="@string/post_photo"
                 android:scaleType="fitCenter"
                 android:visibility="gone" />
 
@@ -120,18 +117,18 @@
                     style="@style/Base.Widget.AppCompat.Button.Borderless"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="16dp"
+                    android:layout_marginEnd="16dp"
                     android:layout_weight="1"
                     android:background="@drawable/bg_btn_sign_in"
-                    android:text="Choose Photo"
+                    android:text="@string/choose_photo"
                     android:textColor="@color/textColorPrimary" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:layout_marginEnd="16dp"
                     android:gravity="center"
-                    android:paddingRight="16dp"
-                    android:text="or"
+                    android:text="@string/or"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="@android:color/black" />
 
@@ -142,7 +139,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/bg_btn_sign_in"
-                    android:text="Take Photo"
+                    android:text="@string/take_photo"
                     android:textColor="@color/textColorPrimary" />
 
             </LinearLayout>
@@ -153,7 +150,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_btn_sign_in"
-                android:text="Post"
+                android:text="@string/post"
                 android:textColor="@color/textColorPrimary" />
 
         </LinearLayout>

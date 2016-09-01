@@ -55,21 +55,24 @@
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
+        android:baselineAligned="false"
         android:orientation="horizontal"
         android:weightSum="10">
 
         <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="150dp"
-            android:layout_marginRight="3dp"
+            android:layout_marginEnd="8dp"
             android:layout_weight="5"
             android:background="@color/transparentWhite">
 
             <ImageView
+                android:contentDescription="@string/contact_icon"
                 android:id="@+id/contact_image"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
+                android:scaleType="centerCrop"
                 android:src="@mipmap/chat" />
 
             <TextView
@@ -78,7 +81,7 @@
                 android:layout_below="@+id/contact_image"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp"
-                android:text="Contact"
+                android:text="@string/contact"
                 android:textAllCaps="true"
                 android:textColor="@android:color/white"
                 android:textSize="20sp" />
@@ -88,15 +91,17 @@
         <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="150dp"
-            android:layout_marginLeft="3dp"
+            android:layout_marginEnd="8dp"
             android:layout_weight="5"
             android:background="@color/transparentWhite">
 
             <ImageView
+                android:contentDescription="@string/setting_icon"
                 android:id="@+id/settings_image"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
+                android:scaleType="centerCrop"
                 android:src="@mipmap/settings" />
 
             <TextView
@@ -105,7 +110,7 @@
                 android:layout_below="@+id/settings_image"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp"
-                android:text="Settings"
+                android:text="@string/settings"
                 android:textAllCaps="true"
                 android:textColor="@android:color/white"
                 android:textSize="20sp" />

@@ -23,8 +23,8 @@
                 android:id="@+id/imgCategoryIcon"
                 android:layout_width="64dp"
                 android:layout_height="64dp"
-                android:layout_gravity="left|center"
-                android:layout_marginRight="8dp"
+                android:layout_gravity="start|center"
+                android:layout_marginEnd="8dp"
                 android:scaleType="fitCenter"/>
 
             <LinearLayout
@@ -38,7 +38,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="8dp"
-                    android:text="Web"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textColor="@color/textColorPrimary"/>
 
@@ -47,7 +46,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="8dp"
-                    android:text="1320 posts"
                     android:textColor="@color/textColorSecondary"/>
             </LinearLayout>
         </LinearLayout>

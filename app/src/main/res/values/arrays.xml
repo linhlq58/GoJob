@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="category">
+    <string-array name="categories">
         <item>Web</item>
         <item>Design</item>
         <item>Mobile</item>
         <item>Tester</item>
         <item>Data</item>
+    </string-array>
+
+    <string-array name="tabs">
+        <item>Category</item>
+        <item>Newest</item>
+        <item>Chat</item>
     </string-array>
 </resources>
