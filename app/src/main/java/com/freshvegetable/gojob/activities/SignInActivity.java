@@ -2,6 +2,7 @@ package com.freshvegetable.gojob.activities;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
@@ -26,6 +27,7 @@ import com.freshvegetable.gojob.utils.Url;
 import com.freshvegetable.gojob.utils.Utils;
 import com.freshvegetable.gojob.utils.VolleyRequest;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.net.CookieHandler;
@@ -109,7 +111,18 @@ public class SignInActivity extends AppCompatActivity {
                         new Response.Listener<JSONObject>() {
                             @Override
                             public void onResponse(JSONObject response) {
-                                Intent intent = new Intent(SignInActivity.this, MainActivity.class);
+                                SharedPreferences share = getSharedPreferences("MyAccount", MODE_PRIVATE);
+								SharedPreferences.Editor editor = share.edit();
+								try {
+									editor.putString("URName", response.getString("username"));
+									editor.putString("URDisplayName", response.getString("displayName"));
+									editor.putString("URProfileImageURL", response.getString("profileImageURL"));
+								} catch (JSONException e) {
+									e.printStackTrace();
+								}
+
+								editor.commit();
+								Intent intent = new Intent(SignInActivity.this, MainActivity.class);
                                 startActivity(intent);
                             }
                         },

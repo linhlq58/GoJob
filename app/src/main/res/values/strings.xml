@@ -4,4 +4,7 @@
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+	<string name="input_contact">Viết tên một người...</string>
+    <string name="input_message">Viết tin nhắn...</string>
+    <string name="historyMessage">Hiển thị các tin nhắn trước...</string>
 </resources>

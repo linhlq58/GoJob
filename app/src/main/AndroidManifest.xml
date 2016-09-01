@@ -16,6 +16,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.SignUpActivity" />
+        <activity android:name=".activities.ChatActivity" />
         <!--<activity android:name=".activities.SignInActivity" />-->
         <activity android:name=".activities.MainActivity" />
         <activity android:name=".activities.NewPostActivity" />
