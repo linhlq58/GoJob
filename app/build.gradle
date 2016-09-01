@@ -44,4 +44,8 @@ dependencies {
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
     compile 'com.google.android.gms:play-services-appindexing:9.4.0'
+	
+    compile ('io.socket:socket.io-client:0.7.0') {
+        exclude group: 'org.json', module: 'json'
+    }
 }

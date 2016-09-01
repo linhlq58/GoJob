@@ -30,7 +30,7 @@ public class Url {
     public static final String CHANGE_PROFILE_PICTURE_URL = "/api/users/picture";
 
     public static final String GET_CHAT_LIST_HISTORY_URL = "/api/users/messageHistory";
-    public static final String MASSAGE_HISTORY_URL = "api/users/massage/";
+    public static final String MASSAGE_HISTORY_URL = "/api/users/message/";
 
     /**
      * Post API

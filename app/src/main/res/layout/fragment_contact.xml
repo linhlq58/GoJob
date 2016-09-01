@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="56dp">
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:background="@color/cardview_light_background">
+            <EditText
+                android:padding="5dp"
+                android:hint="@string/input_contact"
+                android:id="@+id/et_search"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:background="@color/cardview_light_background"/>
+            <ImageView
+                android:id="@+id/search_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/search"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:scaleType="centerInside"/>
+        </TableRow>
+    </TableRow>
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/contactListRefresher"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/contactList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </android.support.v7.widget.RecyclerView>
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+</LinearLayout>

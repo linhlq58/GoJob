@@ -38,4 +38,5 @@ public class VolleyRequest {
 
     public static final String COMMENT_CONTENT = "commentContent";
 
+    public static final String TEXT_SEARCH = "textSearch";
 }
