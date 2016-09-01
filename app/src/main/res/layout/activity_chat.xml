@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -27,11 +27,11 @@
                 android:id="@+id/tv_old_message"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/historyMessage"
-                android:gravity="center"
-                android:textColor="@android:color/holo_blue_dark"
                 android:layout_marginBottom="10dp"
-                android:layout_marginTop="10dp"/>
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="@string/massage_history"
+                android:textColor="@android:color/holo_blue_dark" />
             <ProgressBar
                 android:id="@+id/load_old_msg"
                 android:layout_width="20dp"
@@ -46,14 +46,14 @@
             android:layout_weight="1"
             android:paddingLeft="@dimen/activity_horizontal_margin"
             android:paddingRight="@dimen/activity_horizontal_margin"
-            android:scrollbars="vertical"
-            android:scrollbarStyle="outsideOverlay"/>
+            android:scrollbarStyle="outsideOverlay"
+            android:scrollbars="vertical" />
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:gravity="center_vertical"
-            android:background="@android:color/white">
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:background="@android:color/white"
+            android:gravity="center_vertical">
 
             <EditText
                 android:id="@+id/message_input"
@@ -65,17 +65,16 @@
                 android:inputType="text"
                 android:maxLines="1"
                 android:singleLine="true"
-                android:hint="@string/input_message"
-                android:textColorHint="@android:color/darker_gray"
-                android:textColor="@android:color/black"/>
+                android:textColor="@android:color/black"
+                android:textColorHint="@android:color/darker_gray" />
             <ImageView
                 android:id="@+id/send_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/btn_send"
-                android:paddingTop="5dp"
                 android:paddingBottom="5dp"
-                android:scaleType="centerInside"/>
+                android:paddingTop="5dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/btn_send" />
         </TableRow>
     </LinearLayout>
 
